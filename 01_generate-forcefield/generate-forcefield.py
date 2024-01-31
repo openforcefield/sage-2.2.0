@@ -23,6 +23,16 @@ def download_force_field(
     from openff.toolkit import ForceField
 
     force_field = ForceField(force_field_name)
+
+    # Remove redundant torsions
+    torsions_to_remove = ["t123"]
+    torsion_handler = force_field.get_parameter_handler("ProperTorsions")
+    for parameter_id in torsions_to_remove:
+        parameters = torsion_handler.get_parameter({"id": parameter_id})
+        assert len(parameters) == 1
+        torsion_handler.parameters.remove(parameters[0])
+
+    # Write out file
     force_field.to_file(output_path)
 
 
