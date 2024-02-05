@@ -32,6 +32,10 @@ def download_force_field(
         assert len(parameters) == 1
         torsion_handler.parameters.remove(parameters[0])
 
+    # Fix t65
+    torsion = torsion_handler.get_parameter({"id": "t65"})[0]
+    torsion.smirks = "[*:1]-[#6X4:2]-[#7X3:3](~[#8X1])~[#8X1:4]"
+
     # Write out file
     force_field.to_file(output_path)
 
