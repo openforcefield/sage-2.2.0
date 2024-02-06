@@ -9,7 +9,6 @@ import numpy as np
 from openff.units import unit
 import tqdm
 # suppress stereochemistry warnings
-import logging
 logging.getLogger("openff").setLevel(logging.ERROR)
 
 if typing.TYPE_CHECKING:
@@ -130,6 +129,7 @@ def main(
 
     ff = ForceField(initial_force_field, allow_cosmetic_attributes=True)
 
+    # calculate MSM parameters for the dataset
     records_and_molecules = list(hessian_set.to_records())
     if verbose:
         records_and_molecules = tqdm.tqdm(
@@ -186,7 +186,8 @@ def main(
                 print(f"Errored dataset written to: {error_file}")
     
 
-    # now we need to update the FF parameters
+    # now we need to update the initial FF parameters to be the
+    # mean of the MSM parameters for each molecule covered by that parameter
     kj_per_mol_per_nm2 = unit.kilojoule_per_mole / unit.nanometer ** 2
     bond_handler = ff.get_parameter_handler("Bonds")
     for smirks in all_parameters["bond_eq"]:

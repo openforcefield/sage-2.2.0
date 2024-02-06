@@ -232,6 +232,7 @@ def download_and_filter_td_data(
     else:
         records_to_remove = []
 
+    # download dataset from QCArchive
     client = FractalClient()
     dataset = TorsionDriveResultCollection.from_server(
         client=client,
@@ -247,7 +248,7 @@ def download_and_filter_td_data(
         if entry.record_id not in records_to_remove
     ]
 
-     # in a number of datasets the iodine-containing molecules
+    # in a number of datasets the iodine-containing molecules
     # were tainted due to an auxiliary basis set issue
     # This has since been resolved and entries have been recomputed
     # in new datasets, but we still need to filter the old ones
@@ -278,6 +279,7 @@ def select_parameters(
     n_processes: int = 1,
     min_coverage: int = 5,
 ):
+    # determine parameter coverage in the dataset
     coverage, _ = get_parameter_distribution(
         dataset=dataset,
         parameter_types=parameter_types,
@@ -291,11 +293,14 @@ def select_parameters(
         handler = force_field.get_parameter_handler(parameter_type)
 
         for parameter_id, count in coverage.items():
+            # skip this parameter if it doesn't meet our coverage requirements
             if count < min_coverage:
                 continue
             parameters = handler.get_parameter({"id": parameter_id})
+            # skip if this isn't a valid parameter
             if not len(parameters):
                 continue
+            # otherwise save SMIRK to list of parameters to train
             selected_parameters[parameter_type].append(parameters[0].smirks)
     return selected_parameters
 
@@ -484,14 +489,18 @@ def download_td_data(
 
     ff = ForceField(initial_forcefield, allow_cosmetic_attributes=True)
 
+    # download and filter core dataset(s)
     core_dataset = download_and_filter_td_data(
         core_td_datasets, td_records_to_remove, include_iodine=False
     )
     if verbose:
         print(f"Number of core entries: {core_dataset.n_results}")
+
+    # download and filter auxilliary dataset(s)
     aux_dataset = download_and_filter_td_data(
         aux_td_datasets, td_records_to_remove, include_iodine=False,
     )
+    # cap number of torsions for aux dataset
     aux_dataset = cap_torsions_per_parameter(
         ff,
         aux_dataset,
@@ -502,6 +511,7 @@ def download_td_data(
         n_processes=n_processes,
     )
 
+    # add additional TD records from file
     if additional_td_records is not None:
         additional_records = list(TorsionDriveResultCollection.parse_file(
             additional_td_records
@@ -509,6 +519,7 @@ def download_td_data(
     else:
         additional_records = []
 
+    # create combined dataset from curated core + aux TD datasets
     key = list(core_dataset.entries.keys())[0]
     all_entries = (
         core_dataset.entries[key]
@@ -574,6 +585,8 @@ def download_and_filter_opt_data(
     else:
         records_to_remove = []
 
+
+    # download dataset(s) from QCArchive
     client = FractalClient()
     dataset = OptimizationResultCollection.from_server(
         client=client,
@@ -591,7 +604,7 @@ def download_and_filter_opt_data(
         if entry.record_id not in records_to_remove
     ]
 
-     # in a number of datasets the iodine-containing molecules
+    # in a number of datasets the iodine-containing molecules
     # were tainted due to an auxiliary basis set issue
     # This has since been resolved and entries have been recomputed
     # in new datasets, but we still need to filter the old ones
@@ -737,12 +750,15 @@ def download_opt_data(
 
     ff = ForceField(initial_forcefield, allow_cosmetic_attributes=True)
 
+    # download and filter core dataset(s)
     core_dataset = download_and_filter_opt_data(
         core_opt_datasets, opt_records_to_remove, include_iodine=False,
         max_opt_conformers=max_opt_conformers
     )
     if verbose:
         print(f"Number of filtered core entries: {core_dataset.n_results}")
+
+    # download and filter datasets with good iodine records
     iodine_dataset = download_and_filter_opt_data(
         iodine_opt_datasets, opt_records_to_remove, include_iodine=True,
         max_opt_conformers=max_opt_conformers
@@ -750,6 +766,7 @@ def download_opt_data(
     if verbose:
         print(f"Number of filtered aux entries: {iodine_dataset.n_results}")
 
+    # combine datasets into one
     key = list(core_dataset.entries.keys())[0]
     all_entries = (
         core_dataset.entries[key]
@@ -765,6 +782,9 @@ def download_opt_data(
         entries={key: list(unique_entries.values())}
     )
 
+    # apply charge filter and conformer RMSD filter
+    # charge filter is applied to the final dataset because it's the slowest
+    # conformer RMSD filter must be applied last or else conformers in different datasets won't be compared
     filtered_for_charge = new_dataset.filter(ChargeCheckFilter(),ConformerRMSDFilter(max_conformers=max_opt_conformers))
     if verbose:
         print(f"Number of entries after charge check: {filtered_for_charge.n_results}")
@@ -774,6 +794,7 @@ def download_opt_data(
     if verbose:
         print(f"Saved to {output_path}")
 
+    # identify parameters that have enough coverage to train
     selected_parameters = select_parameters(
         filtered_for_charge,
         ["Bonds", "Angles"],
