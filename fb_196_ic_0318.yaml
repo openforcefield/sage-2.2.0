@@ -1,0 +1,31 @@
+name: fb_196_ic_0318
+channels:
+  - conda-forge
+  - openeye
+dependencies:
+  - python=3.10
+  # MM calculations
+  - openff-toolkit-base
+  - openeye-toolkits==2022.1.1
+  - openff-interchange-base==0.3.18
+  - pymbar=3.1.0
+  - openff-forcefields
+  - openff-qcsubmit
+  - openff-bespokefit
+  - qcportal==0.15.8
+  - tqdm
+  - openmm 
+  - openmmforcefields
+  - conda-forge::libiconv
+  - ambertools
+  - qubekit
+  - forcebalance=1.9.6
+  - ndcctools
+  - cmiles
+  - geometric
+  - click
+  - jupyter
+  - black
+  - isort
+  - flake8 
+  - mamba
