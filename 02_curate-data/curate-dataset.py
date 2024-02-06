@@ -12,6 +12,9 @@ import tqdm
 
 from openff.qcsubmit.results.filters import ResultRecordFilter
 
+# suppress stereochemistry warnings
+logging.getLogger("openff").setLevel(logging.ERROR)
+
 if typing.TYPE_CHECKING:
     from qcportal.models import TorsionDriveRecord, OptimizationRecord
     from openff.qcsubmit.results import TorsionDriveResultCollection, OptimizationResultCollection
@@ -393,7 +396,7 @@ def cli():
     show_default=True,
     help="Whether to print out additional information.",
 )
-@click.option(
+@click.option( # For TD dataset, ConformerRMSD is never applied, so can use more than one process
     "--n-processes",
     type=int,
     default=4,
@@ -526,11 +529,13 @@ def download_td_data(
     if verbose:
         print(f"Number of entries after charge check: {filtered_for_charge.n_results}")
     
+    # Save dataset
     with open(output_path, "w") as file:
         file.write(filtered_for_charge.json(indent=2))
     if verbose:
         print(f"Saved to {output_path}")
 
+    # Save SMIRKs patterns where there is enough coverage to train
     selected_parameters = select_parameters(
         filtered_for_charge,
         ["ProperTorsions"],
@@ -596,6 +601,8 @@ def download_and_filter_opt_data(
 
 
     # filter out other unsuitable entries
+    # These are only the filters that can be applied to each dataset separately
+    # ConformerRMSD will be applied to the combined dataset at the end with the charge check
     dataset = dataset.filter(
         RecordStatusFilter(status=RecordStatusEnum.complete),
         ConnectivityFilter(tolerance=1.2),
@@ -603,7 +610,7 @@ def download_and_filter_opt_data(
         ElementFilter(
             allowed_elements=elements
         ),
-        ConformerRMSDFilter(max_conformers=max_opt_conformers)
+        #ConformerRMSDFilter(max_conformers=max_opt_conformers)
 
     )
     return dataset
@@ -676,10 +683,10 @@ def download_and_filter_opt_data(
     type=int,
     help="The maximum number of conformers to keep per molecule.",
 )
-@click.option(
+@click.option( # Due to Conformer RMSD filter, can only use 1 core for filtering
     "--n-processes",
     type=int,
-    default=4,
+    default=1,
     show_default=True,
     help="The number of processes to use when processing the data.",
 )
@@ -702,7 +709,7 @@ def download_opt_data(
     opt_records_to_remove: typing.Optional[str] = None,
     max_opt_conformers: int = 12,
     verbose: bool = True,
-    n_processes: int = 4,
+    n_processes: int = 1,
     min_record_coverage: int = 5,
 ):
     """Download and filter optimization datasets.
@@ -756,7 +763,7 @@ def download_opt_data(
         entries={key: list(unique_entries.values())}
     )
 
-    filtered_for_charge = new_dataset.filter(ChargeCheckFilter())
+    filtered_for_charge = new_dataset.filter(ChargeCheckFilter(),ConformerRMSDFilter(max_conformers=max_opt_conformers))
     if verbose:
         print(f"Number of entries after charge check: {filtered_for_charge.n_results}")
 
