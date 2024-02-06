@@ -729,6 +729,8 @@ def download_opt_data(
     """
     from openff.qcsubmit.results import OptimizationResultCollection
     from openff.toolkit import ForceField
+    from openff.qcsubmit.results.filters import ConformerRMSDFilter
+    
 
     # suppress stereochemistry warnings
     logging.getLogger("openff").setLevel(logging.ERROR)
