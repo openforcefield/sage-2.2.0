@@ -28,11 +28,11 @@ def download_force_field(
     angle_handler = force_field.get_parameter_handler("Angles")
     # Create a41, for internal r5 angles
     # Initial value taken from eyeballing the MSM distribution, but will be overwritten by actual MSM value.
-    a41_param = angle_handler.AngleType(smirks = '[*:r5:1]@1@[*;r5:2]@[*;r5:3]@[r5]@[r5]@1', angle=105.0*unit.degree,k=250.0*unit.kilocalories_per_mole / (unit.radian**2),id='a41')
+    a41_param = angle_handler.AngleType(smirks = '[*;r5:1]@1[*;r5:2]@[*;r5:3]@[r5]@[r5]@1', angle=105.0*unit.degree,k=250.0*unit.kilocalories_per_mole / (unit.radian**2),id='a41')
     angle_handler.add_parameter(parameter=a41_param)
 
     # Create a41a, for internal r5 angles with S as the central atom
-    a41a_param = angle_handler.AngleType(smirks = '[*:r5:1]@1@[#16;r5:2]@[*;r5:3]@[r5]@[r5]@1', angle=105.0*unit.degree,k=250.0*unit.kilocalories_per_mole / (unit.radian**2),id='a41a')
+    a41a_param = angle_handler.AngleType(smirks = '[*;r5:1]@1[#16;r5:2]@[*;r5:3]@[r5]@[r5]@1', angle=105.0*unit.degree,k=250.0*unit.kilocalories_per_mole / (unit.radian**2),id='a41a')
     angle_handler.add_parameter(parameter=a41a_param)
 
     # Move a7 to the end, make more general
