@@ -1,7 +1,11 @@
 # Obtaining QM data
 
-The scripts here download and curate QM data for fitting the valence parameters of the force field. The script automates a lot of manual modifications and may need future modifying if we discover more issues. Steps include:
+The scripts here download and curate QM data for fitting the valence parameters of the force field. These are copied with minor modification from [valence-fitting](https://github.com/lilyminium/valence-fitting) which is in turn a modified version of the [Sage 2.1.0 fitting procedure](https://github.com/openforcefield/sage-2.1.0) 
 
+Steps include:
+
+* downloading records from QCArchive
+* filtering records
 * pruning iodine records from particular datasets, as they may have poor results
 * facility for adding additional QM records as needed for fitting particular parameters
 * facility for *removing* particular QM records that may not be suitable for various reasons, e.g. inconsistent IDs, charge assignment failures, and other errors.
