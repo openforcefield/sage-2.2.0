@@ -1,5 +1,17 @@
 #!/bin/bash
+#SBATCH -J filter_sage_220
+#SBATCH -p standard
+#SBATCH -t 4-00:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=8
+#SBATCH --account dmobley_lab
+#SBATCH --export ALL
+#SBATCH --constraint=fastscratch
+#SBATCH -o filter_sage_220.out
+#SBATCH -e filter_sage_220.err
 
+date
+hostname
 
 source ~/.bashrc
 conda activate fb_196_ic_0318
@@ -19,6 +31,7 @@ python curate-dataset.py download-opt                                           
     --max-opt-conformers    12                                                  \
     --output                "output/optimization-training-set.json"             \
     --initial-forcefield    "../01_generate-forcefield/output/initial-force-field.offxml" \
+    --output-parameter-smirks  "output/training-valence-smirks.json"            \
     --verbose
 
 
@@ -46,4 +59,7 @@ python curate-dataset.py download-td                                            
     --cap-method            "pick_random"                                           \
     --n-processes           8                                                       \
     --output                "output/torsion-training-set.json"                      \
+    --output-parameter-smirks "output/training-torsion-smirks.json"                 \
     --verbose
+
+date
