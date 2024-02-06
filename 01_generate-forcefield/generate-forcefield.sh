@@ -2,7 +2,7 @@
 
 
 source ~/.bashrc
-micromamba activate fb-195-tk-014-py310
+conda activate fb_196_ic_0318
 
 python generate-forcefield.py                                           \
     --force-field-name          "openff_unconstrained-2.1.0.offxml"     \
