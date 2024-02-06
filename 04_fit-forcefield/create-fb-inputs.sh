@@ -1,9 +1,20 @@
 #!/bin/bash
+#SBATCH -J sage_220_fbinp
+#SBATCH -p standard
+#SBATCH -t 1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --account dmobley_lab
+#SBATCH --export ALL
+#SBATCH --constraint=fastscratch
+#SBATCH -o sage_220_fbinp.out
+#SBATCH -e sage_220_fbinp.err
 
+date
+hostname
 
 source ~/.bashrc
-micromamba activate fb-195-tk-014-py310
-
+conda activate fb_196_ic_0318    
 
 python create-fb-inputs.py                                                                          \
     --tag                       "fb-fit"                                                            \
@@ -14,7 +25,7 @@ python create-fb-inputs.py                                                      
     --torsions-to-optimize      "../02_curate-data/output/training-torsion-smirks.json"             \
     --smiles-to-exclude         "smiles-to-exclude.dat"                                             \
     --smarts-to-exclude         "smarts-to-exclude.dat"                                             \
-    --max-iterations            1                                                                   \
+    --max-iterations            100                                                                 \
     --port                      55387                                                               \
     --output-directory          "output"                                                            \
     --verbose
