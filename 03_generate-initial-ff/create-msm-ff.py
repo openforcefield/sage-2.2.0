@@ -8,6 +8,9 @@ import click
 import numpy as np
 from openff.units import unit
 import tqdm
+# suppress stereochemistry warnings
+import logging
+logging.getLogger("openff").setLevel(logging.ERROR)
 
 if typing.TYPE_CHECKING:
     from openff.toolkit import Molecule, ForceField

@@ -1,12 +1,25 @@
 #!/bin/bash
+#SBATCH -J sage_220_msm
+#SBATCH -p standard
+#SBATCH -t 1-00:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --account dmobley_lab
+#SBATCH --export ALL
+#SBATCH --constraint=fastscratch
+#SBATCH -o sage_220_msm.out
+#SBATCH -e sage_220_msm.err
 
+date
+hostname
 
 source ~/.bashrc
-micromamba activate fb-195-tk-014-py310
-
+conda activate fb_196_ic_0318    
 
 python create-msm-ff.py                                                                                     \
-    --initial-force-field       "../01_generate-forcefield/output/initial-force-field-openff-2.1.0.offxml"  \
+    --initial-force-field       "../01_generate-forcefield/output/initial-force-field.offxml"  \
     --optimization-dataset      "../02_curate-data/output/optimization-training-set.json"                   \
     --working-directory         "working-directory"                                                         \
     --output                    "output/initial-force-field-msm.offxml"
+
+date
