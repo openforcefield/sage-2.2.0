@@ -263,8 +263,8 @@ def generate(
                 targets=targets,
                 parameters=target_parameters,
                 parameter_hyperparameters=[
-                    AngleHyperparameters(priors={"k": 100, "angle": 5}),
-                    BondHyperparameters(priors={"k": 100, "length": 0.1}),
+                    AngleHyperparameters(priors={"k": 20.0, "angle": 1.0}),
+                    BondHyperparameters(priors={"k": 20.0, "length": 0.01}),
                     ProperTorsionHyperparameters(priors={"k": 5}),
                     ImproperTorsionHyperparameters(priors={"k": 5}),
                 ],
