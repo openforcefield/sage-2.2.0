@@ -1,0 +1,14 @@
+{
+  "entries": {
+    "https://api.qcarchive.molssi.org:443/": [
+      {
+        "type": "torsion",
+        "record_id": "2703402",
+        "cmiles": "[H:6][C:2]([H:7])([H:8])[C:1](=[O:3])[O:5][O:4][H:9]",
+        "inchi_key": "KFSLWBXXFJQRDL-UHFFFAOYNA-N"
+      }
+    ]
+  },
+  "provenance": {},
+  "type": "TorsionDriveResultCollection"
+}
