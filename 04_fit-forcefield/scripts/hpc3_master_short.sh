@@ -1,25 +1,14 @@
 #!/bin/bash
-#SBATCH -J valence-fit
-#SBATCH -p standard
-#SBATCH -t 72:00:00
-#SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=10000mb
-#SBATCH --account dmobley_lab
-#SBATCH --export ALL
-#SBATCH --mail-user=MY_USERNAME@uci.edu
-#SBATCH --constraint=fastscratch
-
 
 rm -rf /tmp/$SLURM_JOB_NAME
 source $HOME/.bashrc
-eval "$(/opt/apps/anaconda/2020.07/bin/conda shell.bash hook)"
+#eval "$(/opt/apps/anaconda/2020.07/bin/conda shell.bash hook)"
 
 # special code to copy conda environment over
 # relies on having set up a conda environment and compressed it
 
-CONDA_ENVIRONMENT_NAME="fb-195-tk-014-py310"
-COMPRESSED_CONDA_ENVIRONMENT="/dfs4/.../${CONDA_ENVIRONMENT_NAME}.tar.gz"
+CONDA_ENVIRONMENT_NAME="fb_196_ic_0318"
+COMPRESSED_CONDA_ENVIRONMENT="/pub/amcisaac/sage-2.2.0/04_fit-forcefield/${CONDA_ENVIRONMENT_NAME}.tar.gz"
 export SLURM_TMPDIR=/tmp
 export TMPDIR=$SLURM_TMPDIR/$SLURM_JOB_NAME
 
@@ -46,7 +35,7 @@ export MKL_NUM_THREADS=1
 
 if ForceBalance.py optimize.in ; then
    tar -czvf optimize.tmp.tar.gz optimize.tmp
-   rsync  -avzIi --exclude="optimize.tmp" --exclude="optimize.bak" --exclude="fb_193*" --exclude="targets*" $TMPDIR/* $SLURM_SUBMIT_DIR > copy.log
+   rsync  -avzIi --exclude="optimize.tmp" --exclude="optimize.bak" --exclude="fb_196*" --exclude="targets*" $TMPDIR/* $SLURM_SUBMIT_DIR > copy.log
    rm -rf $TMPDIR
 fi
 
