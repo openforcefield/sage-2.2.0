@@ -16,15 +16,14 @@ mkdir  -p  $TMPDIR
 rsync -avzIi $COMPRESSED_CONDA_ENVIRONMENT $TMPDIR
 mkdir  -p  $TMPDIR/$CONDA_ENVIRONMENT_NAME
 cd $TMPDIR
-tar xf "${CONDA_ENVIRONMENT_NAME}.tar.gz" -C $CONDA_ENVIRONMENT_NAME
+tar -xzf "${CONDA_ENVIRONMENT_NAME}.tar.gz" -C $CONDA_ENVIRONMENT_NAME
 source "${CONDA_ENVIRONMENT_NAME}/bin/activate"
 echo $(python -V)
 
 rsync  -avzIi  $SLURM_SUBMIT_DIR/optimize.in  $SLURM_TMPDIR/$SLURM_JOB_NAME
-rsync  -avzIi  $SLURM_SUBMIT_DIR/targets.tar.gz  $SLURM_TMPDIR/$SLURM_JOB_NAME
+rsync  -avzIi  $SLURM_SUBMIT_DIR/targets  $SLURM_TMPDIR/$SLURM_JOB_NAME
 rsync  -avzIi  $SLURM_SUBMIT_DIR/forcefield  $SLURM_TMPDIR/$SLURM_JOB_NAME
 
-tar -xzf targets.tar.gz
 
 datadir=$(pwd)
 mkdir -p $SLURM_SUBMIT_DIR/worker_logs

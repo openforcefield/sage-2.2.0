@@ -753,7 +753,7 @@ def download_opt_data(
     # download and filter core dataset(s)
     core_dataset = download_and_filter_opt_data(
         core_opt_datasets, opt_records_to_remove, include_iodine=False,
-        max_opt_conformers=max_opt_conformers
+        max_opt_conformers=max_opt_conformers, verbose=verbose
     )
     if verbose:
         print(f"Number of filtered core entries: {core_dataset.n_results}")
@@ -761,7 +761,7 @@ def download_opt_data(
     # download and filter datasets with good iodine records
     iodine_dataset = download_and_filter_opt_data(
         iodine_opt_datasets, opt_records_to_remove, include_iodine=True,
-        max_opt_conformers=max_opt_conformers
+        max_opt_conformers=max_opt_conformers,verbose=verbose
     )
     if verbose:
         print(f"Number of filtered aux entries: {iodine_dataset.n_results}")

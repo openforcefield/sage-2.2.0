@@ -11,7 +11,7 @@ USERNAME=$(whoami)
 COMPRESSED_CONDA_ENVIRONMENT="/pub/amcisaac/sage-2.2.0/04_fit-forcefield/${CONDA_ENVIRONMENT_NAME}.tar.gz"
 export SLURM_TMPDIR=/tmp
 export MYTMPDIR="/tmp/${USERNAME}"
-export TMPDIR=$SLURM_TMPDIR/$SLURM_JOB_NAME
+export TMPDIR=$SLURM_TMPDIR/
 
 
 cmd=$(mktemp)

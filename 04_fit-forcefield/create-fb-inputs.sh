@@ -20,7 +20,7 @@ python create-fb-inputs.py                                                      
     --tag                       "fb-fit"                                                            \
     --optimization-dataset      "../02_curate-data/output/optimization-training-set.json"           \
     --torsion-dataset           "../02_curate-data/output/torsion-training-set.json"                \
-    --forcefield                "../03_generate-initial-ff/output/initial-force-field-msm.offxml"   \
+    --forcefield                "../03_generate-initial-ff/output/initial-force-field-msm_addast.offxml"   \
     --valence-to-optimize       "../02_curate-data/output/training-valence-smirks.json"             \
     --torsions-to-optimize      "../02_curate-data/output/training-torsion-smirks.json"             \
     --smiles-to-exclude         "smiles-to-exclude.dat"                                             \
