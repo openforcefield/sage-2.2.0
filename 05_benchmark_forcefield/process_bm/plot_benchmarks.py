@@ -228,7 +228,6 @@ def main_nofilter(dir,all_data,all_data_names,type):
     # except FileNotFoundError:
         os.mkdir(dir)
 
-
     print('Saving plots to ', dir)
     if type == 'dde':
         plot_dde(all_data,all_data_names,dir)
@@ -242,16 +241,8 @@ def main_nofilter(dir,all_data,all_data_names,type):
 @click.option('--filter_file',default=False,help='File with IDs of records to filter. Should contain molecules kept by filter. ')
 @click.option('--filter_pattern',default=False,help='Description of filter to be used for titles etc')
 @click.option('--type',type=click.Choice(['dde','rmsd','tfd']),default='dde',help='Property to plot')
-def main(dir,outlier_files,filter_file,filter_pattern):
-    # Load in data
-    sage_200_ids,sage_200_datas = np.loadtxt('./sage/sage-industry-output/{}.csv'.format(type),delimiter = ',',skiprows=1,unpack=True)
-    sage_210_ids,sage_210_datas = np.loadtxt('./smring_543internal_4sideog/industry-output/{}.csv'.format(type),delimiter = ',',skiprows=1,unpack=True)
-    sage_220_ids,sage_220_datas = np.loadtxt('./smring_543internal_4sidegeneric/industry-output/{}.csv'.format(type),delimiter = ',',skiprows=1,unpack=True)
-
-    all_data = [sage_200_datas,sage_210_datas,sage_220_datas]
-    all_ids = [sage_200_ids,sage_210_ids,sage_220_ids]
-    all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
-
+@click.option('--rmsd_filter',help='Whether to filter benchmarks by large RMSD')
+def main(dir,outlier_files,filter_file,filter_pattern,rmsd_filter):
     # make sure we can use dir by adding a slash and making the directory if necessary
     if dir[-1] != '/':
             dir += '/'
@@ -259,6 +250,65 @@ def main(dir,outlier_files,filter_file,filter_pattern):
     if not os.path.isdir(dir): # make parent dir if necessary
     # except FileNotFoundError:
         os.mkdir(dir)
+
+    # Load in data
+    sage_200_ids,sage_200_data = np.loadtxt('./sage/sage-industry-output/{}.csv'.format(type),delimiter = ',',skiprows=1,unpack=True)
+    sage_210_ids,sage_210_data = np.loadtxt('./smring_543internal_4sideog/industry-output/{}.csv'.format(type),delimiter = ',',skiprows=1,unpack=True)
+    sage_220_ids,sage_220_data = np.loadtxt('./smring_543internal_4sidegeneric/industry-output/{}.csv'.format(type),delimiter = ',',skiprows=1,unpack=True)
+
+    if rmsd_filter:
+        dir += 'rmsd_filter/'
+        if not os.path.isdir(dir):
+            os.mkdir(dir)
+
+        print('Filtering out entries with RMSD > 0.4 A'.format(type))
+        sage_200_rmsd_ids,sage_200_rmsds = np.loadtxt('./sage/sage-industry-output/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
+        sage_210_rmsd_ids,sage_210_rmsds = np.loadtxt('./smring_543internal_4sideog/industry-output/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
+        sage_220_rmsd_ids,sage_220_rmsds = np.loadtxt('./smring_543internal_4sidegeneric/industry-output/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
+
+        # indices for data to keep--with rmsd < 0.4
+        sage_200_lgrmsd_idx = sage_200_rmsds < 0.4
+        sage_210_lgrmsd_idx = sage_210_rmsds < 0.4
+        sage_220_lgrmsd_idx = sage_220_rmsds < 0.4
+        # make sure all the entries are present in all files
+        if len(sage_200_rmsd_ids) != len(sage_200_ids):
+            if len(sage_200_rmsd_ids) > len(sage_200_ids):
+                keep_ids_200 = [id in sage_200_ids for id in sage_200_rmsd_ids]
+                sage_200_rmsds = sage_200_rmsds[keep_ids_200]
+                sage_200_lgrmsd_idx = sage_200_lgrmsd_idx[keep_ids_200]
+            else:
+                keep_ids_200 = [id in sage_200_rmsd_ids for id in sage_200_ids]
+                sage_200_data = sage_200_data[keep_ids_200]
+
+        if len(sage_210_rmsd_ids) != len(sage_210_ids):
+            if len(sage_210_rmsd_ids) > len(sage_210_ids):
+                keep_ids_210 = [id in sage_210_ids for id in sage_210_rmsd_ids]
+                sage_210_rmsds = sage_210_rmsds[keep_ids_210]
+                sage_210_lgrmsd_idx = sage_210_lgrmsd_idx[keep_ids_210]
+            else:
+                keep_ids_210 = [id in sage_210_rmsd_ids for id in sage_210_ids]
+                sage_210_data = sage_210_data[keep_ids_210]
+
+        if len(sage_220_rmsd_ids) != len(sage_220_ids):
+            if len(sage_220_rmsd_ids) > len(sage_220_ids):
+                keep_ids_220 = [id in sage_220_ids for id in sage_220_rmsd_ids]
+                sage_220_rmsds = sage_220_rmsds[keep_ids_220]
+                sage_220_lgrmsd_idx = sage_220_lgrmsd_idx[keep_ids_220]
+            else:
+                keep_ids_220 = [id in sage_220_rmsd_ids for id in sage_220_ids]
+                sage_220_data = sage_220_data[keep_ids_220]
+
+
+
+        sage_200_data = sage_200_data[sage_200_lgrmsd_idx]
+        sage_210_data = sage_210_data[sage_210_lgrmsd_idx]
+        sage_220_data = sage_220_data[sage_220_lgrmsd_idx]
+
+
+    all_data = [sage_200_data,sage_210_data,sage_220_data]
+    all_ids = [sage_200_ids,sage_210_ids,sage_220_ids]
+    all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
+
 
     if len(outlier_files)>0:
         dir += 'outliers_removed/'
