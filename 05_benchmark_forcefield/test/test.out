@@ -1,0 +1,7 @@
+Wed Feb 14 16:03:07 PST 2024
+hpc3-21-17
+loading initial dataset from datasets/OpenFF-Aniline-Para-Opt-v1.0.json
+generating database, saving to test.sqlite
+started optimizing store
+finished optimizing after 74.14609861373901 sec
+Wed Feb 14 16:06:09 PST 2024
