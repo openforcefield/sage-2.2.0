@@ -80,7 +80,7 @@ def boxplot(datasets,labels,filename,title=''):
     plt.title(title)
     plt.savefig(filename)
 
-def plot_log_kde(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2,2],xlabel='RMSD (Log A)'):
+def plot_log_kde(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2,1],xlabel='RMSD (Log A)'):
     if bw > .5:
         gs = 1
     elif bw > .2:
@@ -142,9 +142,9 @@ def plot_conf_filter(kept_by_filter,filtered_out,all_data_names,dir,filter_patte
     plt.close()
 
     title = 'Molecules without {}'.format(filter_pattern)
-    plot_log_kde(filtered_out,all_data_names,dir+'{}_sage220_{}_kde.pdf'.format(type,filter_pattern),title=title,xlabel=xlab)
+    plot_log_kde(filtered_out,all_data_names,dir+'{}_sage220_{}fo_kde.pdf'.format(type,filter_pattern),title=title,xlabel=xlab)
     plt.close()
-    boxplot(filtered_out,all_data_names,dir+'{}_sage220_{}_boxplot.pdf'.format(type,filter_pattern),title=title)
+    boxplot(filtered_out,all_data_names,dir+'{}_sage220_{}fo_boxplot.pdf'.format(type,filter_pattern),title=title)
     plt.close()
 
 def plot_dde_filter(kept_by_filter,filtered_out,all_data_names,dir,filter_pattern):
@@ -156,8 +156,11 @@ def plot_dde_filter(kept_by_filter,filtered_out,all_data_names,dir,filter_patter
     plt.close()
     plot_kde(kept_by_filter,all_data_names,dir+'dde_sage220_{}_kde.pdf'.format(filter_pattern),title=title)
     plt.close()
-    boxplot(kept_by_filter,all_data_names,dir+'dde_sage220_{}_boxplot.pdf'.format(filter_pattern),title=title)
-    plt.close()
+    try:
+        boxplot(kept_by_filter,all_data_names,dir+'dde_sage220_{}_boxplot.pdf'.format(filter_pattern),title=title)
+        plt.close()
+    except ValueError:
+        pass
 
     title = 'Molecules without {}'.format(filter_pattern)
     plot_hist(filtered_out,all_data_names,dir+'dde_sage220_{}fo_hist.pdf'.format(filter_pattern),title=title)
@@ -166,12 +169,16 @@ def plot_dde_filter(kept_by_filter,filtered_out,all_data_names,dir,filter_patter
     plt.close()
     plot_kde(filtered_out,all_data_names,dir+'dde_sage220_{}fo_kde.pdf'.format(filter_pattern),title=title)
     plt.close()
-    boxplot(filtered_out,all_data_names,dir+'dde_sage220_{}fo_boxplot.pdf'.format(filter_pattern),title=title)
-    plt.close()
+    try:
+        boxplot(filtered_out,all_data_names,dir+'dde_sage220_{}fo_boxplot.pdf'.format(filter_pattern),title=title)
+        plt.close()
+    except ValueError:
+        pass
 
 # def plot_dde()
 
-def filter_data_difsize(datasets,dataset_ids,filter_ids,rmsd_filter_idx):
+def filter_data_difsize(datasets,dataset_ids,filter_ids):#,rmsd_filter_idx):
+    print("Data has different sizes, filtering datasets individually")
     # loop through datasets
     all_data_covered = []
     all_data_notcovered = []
@@ -179,8 +186,12 @@ def filter_data_difsize(datasets,dataset_ids,filter_ids,rmsd_filter_idx):
     all_ids_notcovered = []
     filter_id_files = [np.loadtxt(file) for file in filter_ids]
     for i,data in enumerate(datasets):
-        did = dataset_ids[i]
-        rmsd_idx = rmsd_filter_idx[i]
+        did = np.array(dataset_ids[i])
+
+        # print(data.shape)
+        # print(did.shape)
+        # print(rmsd_idx.shape)
+        # print(np.count_nonzero(rmsd_idx))
 
         # loop through filter files--maybe not the most efficient
         n_data_flag = False
@@ -194,19 +205,21 @@ def filter_data_difsize(datasets,dataset_ids,filter_ids,rmsd_filter_idx):
                 covered_idx = np.array([i in filter_id for i in did])
                 n_data_flag = True
 
+        # print(covered_idx.shape)
         # these will just be all "True" if no rmsd filter, so should be OK
-        not_covered_idx = np.logical_not(covered_idx)[rmsd_idx]
-        covered_idx = covered_idx[rmsd_idx]
+        not_covered_idx = np.logical_not(covered_idx)#[rmsd_idx]
+        covered_idx = covered_idx#[rmsd_idx]
+        # print(covered_idx.shape)
 
         # don't need to do any asserting since we are doing each one in its own order
         all_data_covered.append(data[covered_idx]) # data that includes the filtered IDS
         all_data_notcovered.append(data[not_covered_idx]) # data that does not include the filtere IDs
-        all_ids_covered.append(dataset_ids[i][covered_idx])
-        all_ids_notcovered.append(dataset_ids[i][not_covered_idx])
+        all_ids_covered.append(did[covered_idx])#[rmsd_idx][covered_idx])
+        all_ids_notcovered.append(did[not_covered_idx])#[rmsd_idx][not_covered_idx])
 
     return all_data_covered,all_data_notcovered,all_ids_covered,all_ids_notcovered
 
-def filter_data(datasets,dataset_ids,filter_ids,rmsd_filter_idx):
+def filter_data(datasets,dataset_ids,filter_ids)#,rmsd_filter_idx):
     try:
         sage_ids = dataset_ids[0] # Assume Sage is first
 
@@ -224,18 +237,18 @@ def filter_data(datasets,dataset_ids,filter_ids,rmsd_filter_idx):
 
         not_covered_idx = np.logical_not(covered_idx)
 
-        all_covered_idx = [covered_idx[rmsd_idx] for rmsd_idx in rmsd_filter_idx]
-        all_not_covered_idx = [not_covered_idx[rmsd_idx] for rmsd_idx in rmsd_filter_idx]
-        for x in all_covered_idx:
-            print(x.shape)
+        # all_covered_idx = [covered_idx[rmsd_idx] for rmsd_idx in rmsd_filter_idx]
+        # all_not_covered_idx = [not_covered_idx[rmsd_idx] for rmsd_idx in rmsd_filter_idx]
+        # for x in all_covered_idx:
+        #     print(x.shape)
 
         all_data_covered = []
         all_data_notcovered = []
         all_ids_covered = []
         all_ids_notcovered = []
         for i,data in enumerate(datasets):
-            covered_idx = all_covered_idx[i]
-            not_covered_idx = all_not_covered_idx[i]
+            # covered_idx = all_covered_idx[i]
+            # not_covered_idx = all_not_covered_idx[i]
             assert np.all(dataset_ids[i]==sage_ids) # Make sure they're all in the same order
 
             all_data_covered.append(data[covered_idx]) # data that includes the filtered IDS
@@ -245,9 +258,9 @@ def filter_data(datasets,dataset_ids,filter_ids,rmsd_filter_idx):
 
         return all_data_covered,all_data_notcovered,all_ids_covered,all_ids_notcovered
     except (ValueError,IndexError):
-        return filter_data_difsize(datasets,dataset_ids,filter_ids,rmsd_filter_idx)
+        return filter_data_difsize(datasets,dataset_ids,filter_ids)#,rmsd_filter_idx)
 
-def main_filter(dir,all_data,all_data_names,all_ids,filter_file,filter_pattern,type,rmsd_idx): # outliers have already been excluded
+def main_filter(dir,all_data,all_data_names,all_ids,filter_file,filter_pattern,type):#,rmsd_idx): # outliers have already been excluded
     dir = dir+filter_pattern+'/'
     if not os.path.isdir(dir):
     # except FileNotFoundError:
@@ -259,7 +272,7 @@ def main_filter(dir,all_data,all_data_names,all_ids,filter_file,filter_pattern,t
 
 
     print('Filtering dataset')
-    kept_by_filter,filtered_out,kept_ids,filtered_out_ids = filter_data(all_data,all_ids,[filter_file],rmsd_idx)
+    kept_by_filter,filtered_out,kept_ids,filtered_out_ids = filter_data(all_data,all_ids,filter_file)#,rmsd_idx)
     print('Number of molecules kept by filter: ',len(kept_ids[0]))
     print('Number of molecules filtered out: ',len(filtered_out_ids[0]))
     print()
@@ -293,7 +306,7 @@ def main_nofilter(dir,all_data,all_data_names,type):
 @click.command()
 @click.option('--dir',default='./',help='Directory to save plots to')
 @click.option('--outlier_files',default=[],multiple=True,help='File with outlier IDs to filter out')
-@click.option('--filter_file',default=None,help='File with IDs of records to filter. Should contain molecules kept by filter. ')
+@click.option('--filter_file',default=[],help='File with IDs of records to filter. Should contain molecules kept by filter. ')
 @click.option('--filter_pattern',default=None,help='Description of filter to be used for titles etc')
 @click.option('--type',type=click.Choice(['dde','rmsd','tfd']),default='dde',help='Property to plot')
 @click.option('--rmsd_filter',help='Whether to filter benchmarks by large RMSD')
@@ -319,6 +332,7 @@ def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter):
     print(sage_200_ids.shape)
     print(sage_210_ids.shape)
     print(sage_220_ids.shape)
+
 
     rmsd_idx = [np.full(sage_200_ids.shape, True),np.full(sage_210_ids.shape, True),np.full(sage_220_ids.shape, True)]
     if rmsd_filter:
@@ -373,12 +387,12 @@ def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter):
 
 
     all_data = [sage_200_data,sage_210_data,sage_220_data]
-    all_ids = [sage_200_ids,sage_210_ids,sage_220_ids]
+    all_ids = [sage_200_ids[rmsd_idx[0]],sage_210_ids[rmsd_idx[1]],sage_220_ids[rmsd_idx[2]]]
     all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
 
-    print(sage_200_ids.shape)
-    print(sage_210_ids.shape)
-    print(sage_220_ids.shape)
+    #print(sage_200_ids.shape)
+    #print(sage_210_ids.shape)
+    #print(sage_220_ids.shape)
     if len(outlier_files)>0:
         dir += 'outliers_removed/'
         if not os.path.isdir(dir): # make parent dir if necessary
@@ -386,15 +400,15 @@ def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter):
             os.mkdir(dir)
 
         print('Excluding outliers: ',outlier_files)
-        all_outliers,all_data,all_outlier_ids,all_ids = filter_data(all_data,all_ids,outlier_files,rmsd_idx)
+        all_outliers,all_data,all_outlier_ids,all_ids = filter_data(all_data,all_ids,outlier_files)#,rmsd_idx)
         print('Stats for all data, with outliers excluded:')
         # dir += 'outliers'
     else:
         print('Stats for all data:')
     print_stats(all_data,all_data_names)
 
-    if filter_file:
-        main_filter(dir,all_data,all_data_names,all_ids,filter_file,filter_pattern,type,rmsd_idx)
+    if len(filter_file)>0:
+        main_filter(dir,all_data,all_data_names,all_ids,filter_file,filter_pattern,type)#,rmsd_idx)
     else:
         main_nofilter(dir,all_data,all_data_names,type)
 
