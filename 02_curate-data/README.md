@@ -14,3 +14,11 @@ Steps include:
 ```bash
 ./download-and-curate.sh
 ```
+
+Once the dataset is downloaded and filtered, if you change the parameters for the force field, you can generate new training SMIRKs files using
+
+```bash
+./generate_params.sh
+```
+
+Which is how we generated the training SMIRKs here.
