@@ -1,0 +1,25 @@
+Filtering out entries with RMSD > 0.4 A
+Number of entries remaining: 44335,47158,47017
+Stats for all data:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     44335   -96.9241    29.0708 -0.08261  1.27384  0.00000  2.11781     5120
+Sage 2.1.0                     47158   -97.0110    32.1861  0.17105  1.33817  0.00000  2.25075     5186
+Sage 2.2.0                     47017   -96.5423    36.2106  0.10421  1.34524  0.00000  2.28069     5300
+Filtering dataset
+Data has different sizes, filtering datasets individually
+Number of molecules kept by filter: 3373
+Number of molecules filtered out: 40962
+
+
+Stats for molecules that include sulfonamides
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                      3373   -93.0621    29.0708  0.10398  1.51225  0.00000  2.80873      266
+Sage 2.1.0                      3493   -80.8877    32.1861  0.30616  1.74423  0.00000  2.87560      215
+Sage 2.2.0                      3449   -79.9917    36.2106  0.33698  1.81506  0.00000  3.06716      222
+
+Stats for molecules that don't include sulfonamides
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     40962   -96.9241    25.5171 -0.09798  1.25421  0.00000  2.04981     4833
+Sage 2.1.0                     43665   -97.0110    25.8032  0.16024  1.30568  0.00000  2.19273     4879
+Sage 2.2.0                     43568   -96.5423    29.5920  0.08578  1.30805  0.00000  2.20543     5027
+Saving plots to Sage_220_nor4_benchmark/rmsd_filter/sulfonamides/dde/
