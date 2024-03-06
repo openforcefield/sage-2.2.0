@@ -11,9 +11,9 @@ Number of molecules filtered out: 71820
 
 Stats for molecules that include 4r_heteroatoms
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                       225     1.3961    36.9622  8.13644  8.13644  6.83638  5.63100       24
-Sage 2.1.0                       225     1.7284    35.3600  8.00926  8.00926  6.98068  4.81181       19
-Sage 2.2.0                       225     1.8132    36.8852  8.84903  8.84903  7.68841  4.98306       13
+Sage 2.0.0                       225     0.2312     8.8137  1.66451  1.66451  1.22267  1.51444       26
+Sage 2.1.0                       225     0.2718    13.9997  2.75553  2.75553  1.87654  2.58264       14
+Sage 2.2.0                       225     0.2688     9.6032  2.92674  2.92674  2.16753  2.34742        8
 
 Stats for molecules that don't include 4r_heteroatoms
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers

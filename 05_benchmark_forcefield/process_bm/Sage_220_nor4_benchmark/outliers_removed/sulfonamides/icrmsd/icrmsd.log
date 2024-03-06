@@ -13,7 +13,7 @@ Stats for molecules that include sulfonamides
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
 Sage 2.0.0                      6078        nan        nan      nan      nan      nan      nan        0
 Sage 2.1.0                      6078        nan        nan      nan      nan      nan      nan        0
-Sage 2.2.0                      6078     0.5719    63.7724 11.50229 11.50229  9.00761  7.99893      416
+Sage 2.2.0                      6078        nan        nan      nan      nan      nan      nan        0
 
 Stats for molecules that don't include sulfonamides
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
