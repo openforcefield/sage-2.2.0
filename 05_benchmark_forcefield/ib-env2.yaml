@@ -1,0 +1,15 @@
+name: ib-env2
+channels:
+  - conda-forge
+  - openeye
+dependencies:
+  - python
+  - pip
+  - click
+  - openff-toolkit
+  - openff-qcsubmit
+  - openmmforcefields
+  - openeye-toolkits=2022.1.1
+  - openff-interchange-base=0.3.18
+  - qcportal=0.15.8
+  - geometric=1
