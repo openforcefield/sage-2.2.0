@@ -13,4 +13,4 @@ dependencies:
   - openff-interchange-base=0.3.18
   - qcportal=0.15.8
   - pip:
-    - git+git://github.com/mattwthompson/ib.git@de80859
+    - git+https://github.com/mattwthompson/ib.git@de80859
