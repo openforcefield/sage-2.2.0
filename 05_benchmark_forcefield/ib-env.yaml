@@ -12,5 +12,3 @@ dependencies:
   - openeye-toolkits=2022.1.1
   - openff-interchange-base=0.3.18
   - qcportal=0.15.8
-  - pip:
-    - git+https://github.com/mattwthompson/ib.git@0.0.3
