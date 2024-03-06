@@ -1,0 +1,23 @@
+Excluding outliers: ('outlier_ids/all_r7_outliers.txt', 'outlier_ids/sx4_outliers.txt')
+Stats for all data, with outliers excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     71658   -55.9564    29.0708 -0.47125  1.61655 -0.02086  2.54017     6920
+Sage 2.1.0                     71658   -44.6563    32.1861 -0.05830  1.56906  0.00000  2.45604     7163
+Sage 2.2.0                     71658   -53.7144    36.2106 -0.14908  1.58841  0.00000  2.49493     7275
+Filtering dataset
+Number of molecules kept by filter: 4037
+Number of molecules filtered out: 67621
+
+
+Stats for molecules that include 4_membered_rings
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                      4037   -20.3993    16.1598 -0.62181  1.62083 -0.11694  2.51224      446
+Sage 2.1.0                      4037   -19.5355    11.9730 -0.30536  1.56537 -0.00008  2.49812      412
+Sage 2.2.0                      4037   -21.2896    16.6633 -0.27527  1.73028  0.00000  2.73418      419
+
+Stats for molecules that don't include 4_membered_rings
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     67621   -55.9564    29.0708 -0.46226  1.61630 -0.01633  2.54154     6480
+Sage 2.1.0                     67621   -44.6563    32.1861 -0.04355  1.56928  0.00000  2.45272     6728
+Sage 2.2.0                     67621   -53.7144    36.2106 -0.14154  1.57994  0.00000  2.47971     6837
+Saving plots to Sage_220_nor4_benchmark/outliers_removed/4_membered_rings/dde/

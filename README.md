@@ -21,4 +21,4 @@ This can be installed using `mamba env create -f fb_196_ic_0318.yaml`
 
 The full environment that the force field was fit using is included in the file `fb_196_ic_0318_full.yaml`.
 
-Step 5, benchmarking, was performed with several different environments due to developments in our evolving benchmarking software package. The environment that can be used to reproduce this will be uploaded shortly, but for now we provide the benchmarking results, which we do not expect to change.
+Step 5, benchmarking, was performed with several different environments due to developments in our evolving benchmarking software package. Details can be found in the README file for that directory.
