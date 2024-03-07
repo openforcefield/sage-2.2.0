@@ -21,6 +21,10 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' -
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 
+
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
+
+
 #
 # # ANGLES
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'angle'
@@ -42,6 +46,9 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' -
 
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'angle' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'angle' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
+
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'angle' --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
+
 
 #
 # # DIHEDRALS
@@ -65,6 +72,8 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' -
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'dihedral' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'dihedral' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'dihedral' --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
+
 
 # Impropers
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'improper'
@@ -87,6 +96,8 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' -
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'improper' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'improper' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'icrmsd' --ic_type 'improper' --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
+
 
 # # DDE benchmarks
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'dde'
@@ -108,6 +119,8 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'dde' --fi
 #
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'dde' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'dde' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'dde'  --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
+
 
 #
 #
@@ -132,6 +145,8 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'rmsd' --f
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'rmsd' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'rmsd' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'rmsd'  --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
+
 #
 # # TFD benchmarks
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'tfd'
@@ -152,3 +167,4 @@ python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'tfd' --fi
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'tfd' --filter_pattern '4r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r4\:1\]1\@\[\#6\;r4\:2\]\@\[\#6\;r4\:3\]\@\[\#6\;r4\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'tfd' --filter_pattern '3r_heteroatoms' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\!\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
 python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'tfd' --filter_pattern '3r_C' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\#6\;r3\:1\]1\@\[\#6\;r3\:2\]\@\[\#6\;r3\:3\]1.txt
+python plot_benchmarks_nor4.py --dir 'Sage_220_nor4_benchmark' --type 'tfd'  --filter_pattern '5r_S' --outlier_files outlier_ids/all_r7_outliers.txt --outlier_files outlier_ids/sx4_outliers.txt --filter_file filter_ids/filtered_ids_\[\*\;r5\:1\]1\@\[\#16\;r5\:2\]\@\[\*\;r5\:3\]\@\[r5\]\@\[r5\]1.txt
