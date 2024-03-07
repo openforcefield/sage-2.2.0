@@ -11,6 +11,7 @@ dependencies:
   - openmmforcefields
   - openeye-toolkits=2022.1.1
   - openff-interchange-base=0.3.18
-  - qcportal=0.15.8
+  - qcportal=0.15.8.
+  - geometric=1
   - pip:
-    - git+https://github.com/mattwthompson/ib.git@de80859
+    - git+https://github.com/mattwthompson/ib.git@75d7e5c
