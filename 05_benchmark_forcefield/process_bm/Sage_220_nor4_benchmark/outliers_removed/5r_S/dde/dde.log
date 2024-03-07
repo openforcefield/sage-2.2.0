@@ -1,0 +1,23 @@
+Excluding outliers: ('outlier_ids/all_r7_outliers.txt', 'outlier_ids/sx4_outliers.txt')
+Stats for all data, with outliers excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     71658   -55.9564    29.0708 -0.47125  1.61655 -0.02086  2.54017     6920
+Sage 2.1.0                     71658   -44.6563    32.1861 -0.05830  1.56906  0.00000  2.45604     7163
+Sage 2.2.0                     71658   -53.7144    36.2106 -0.14908  1.58841  0.00000  2.49493     7275
+Filtering dataset
+Number of molecules kept by filter: 2616
+Number of molecules filtered out: 69042
+
+
+Stats for molecules that include 5r_S
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                      2616   -15.3140     9.4012 -0.43700  1.34735 -0.00373  2.08429      265
+Sage 2.1.0                      2616   -15.5141     9.2240 -0.13405  1.30192  0.00000  2.03773      274
+Sage 2.2.0                      2616   -13.0386     9.9499 -0.21108  1.31831 -0.00000  2.02325      273
+
+Stats for molecules that don't include 5r_S
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     69042   -55.9564    29.0708 -0.47255  1.62675 -0.02199  2.55583     6674
+Sage 2.1.0                     69042   -44.6563    32.1861 -0.05543  1.57918  0.00000  2.47045     6877
+Sage 2.2.0                     69042   -53.7144    36.2106 -0.14673  1.59864  0.00000  2.51103     6967
+Saving plots to Sage_220_nor4_benchmark/outliers_removed/5r_S/dde/

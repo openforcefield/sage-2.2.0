@@ -37,3 +37,7 @@ We have run a number of "smoke tests" to ensure the performance of Sage 2.2.0 on
 `hmr` contains the result of an HMR simulation, ensuring it does not return NaN energies.
 
 `ligand_in_water_test` contains two jupyter notebooks, one for a sulfonamide and one for a sulfamide, being equlibrated in a box of water. The associated trajectories show that even in the presence of explicit solvent, these geometries which were problematic in Sage 2.0 and Sage 2.1 retain the correct structure with Sage 2.2.
+
+## Other files
+
+There are a few other files in this directory. `openff_unconstrained-2.2.0-rc1-nor4.offxml` is a copy of the new Sage 2.2.0 force field, copied from `04_fit-forcefield/nor4/fb-fit/result/optimize/force-field.offxml`. `remove_cosmetic_attributes.py` removes cosmetic attributes from `openff_unconstrained-2.2.0-rc1-nor4.offxml` and adds the Xe van der Waals parameters, as well as creates the constrained version and ensures both the constrained and unconstrained versions of Sage 2.2.0 can be loaded.
