@@ -1,13 +1,13 @@
 # Benchmarking the performance of the Sage 2.2.0 fit
 
 ## Environment
-The python environment for the benchmarking is included as `ib-env.yaml`. After setting up that environment, you have to download the internal benchmarking package from here. This work was done with version ibstore-0+untagged.112.gde80859, specifically this [commit](https://github.com/mattwthompson/ib/commit/de80859f37b345845f9a7ba5240a4279e5913458). This environment was used to generate the dde, rmsd, and tfd data.
+The python environment that can be used to run the benchmarking suite is included as `ib-env.yaml`. 
 
-To generate the internal coordinate rmsd sata, use the environment `ib-env2.yaml`.
+The `sqlite` databases and dde, rmsd, and tfd data were all generated with the environment `ib-env-full.yaml` which contains slightly different packages than the included environment. After setting up that environment, we downloaded the IBStore code version ibstore-0+untagged.112.gde80859, specifically this [commit](https://github.com/mattwthompson/ib/commit/de80859f37b345845f9a7ba5240a4279e5913458) and installed it with `pip install -e .`.
+
+The internal coordinate rmsd data was generated using the environment `ib-env2-full.yaml`, but should be able to be generated with the enclosed environment.
 
 The conda environment for analyzing the benchmarks is `ib-env-analysis.yaml`.
-
-Once you have created the desired python environment, clone the internal benchmarking package, go to that directory, activate your conda environment, and install the benchmarking package using `pip instsall -e .`
 
 ## Benchmarking the force fields
 To generate the benchmarking data, you can use one of the `submit.sh` scripts. As an example, here is `submit_sage220_nor4.sh`, which was used to generate benchmarking data for this release candidate:
