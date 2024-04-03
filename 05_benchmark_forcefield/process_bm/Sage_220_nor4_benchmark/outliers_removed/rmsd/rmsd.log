@@ -1,7 +1,0 @@
-Excluding outliers: ('outlier_ids/all_r7_outliers.txt', 'outlier_ids/sx4_outliers.txt')
-Stats for all data, with outliers excluded:
-Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     72045     0.0000     5.4296  0.44294  0.44294  0.30569  0.41856     5057
-Sage 2.1.0                     72045     0.0000     5.2240  0.40795  0.40795  0.28751  0.37695     5265
-Sage 2.2.0                     72045     0.0000     5.3211  0.41153  0.41153  0.28653  0.37972     5266
-Saving plots to Sage_220_nor4_benchmark/outliers_removed/rmsd/
