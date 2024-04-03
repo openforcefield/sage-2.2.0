@@ -12,6 +12,7 @@ import tqdm
 import dask
 from dask import distributed
 
+# The majority of this code is from Lily
 
 # ==== helper functions to submit batch workers, copied from openff-nagl ==== #
 # +   if NAGL is already installed, you can bypass this by just importing   + #

@@ -18,10 +18,16 @@ source ~/.bashrc
 conda activate yammbs-env
 
 
+python download-dataset.py                                          \
+    --name      "OpenFF Industry Benchmark Season 1 v1.1"                      \
+    --type      "optimization"                                      \
+    --output    "datasets/OpenFF-Industry-Benchmark-Season-1-v1.1.json"
+
+
 python download_filter_dataset_parallel.py 
-    --input                         "raw-optimization-datasets.json"        \
-    --output                        "filtered.json"         \
-    --charge-backend                "ambertools"            \
+    --input                         "datasets/OpenFF-Industry-Benchmark-Season-1-v1.1.json"        \
+    --output                        "datasets/OpenFF-Industry-Benchmark-Season-1-v1.1-filtered.json"         \
+    --charge-backend                "openeye"            \
     --n-workers                     300                     \
     --worker-type                   "slurm"                 \
     --batch-size                    10                      \
