@@ -44,7 +44,6 @@ def main(forcefield, dataset, sqlite_file, out_dir, procs, invalidate_cache):
         cache = CachedResultCollection.from_json(dataset)
 
         store=MoleculeStore.from_cached_result_collection(cache,sqlite_file)
-
     print("started optimizing store")
     start = time.time()
     store.optimize_mm(force_field=forcefield, n_processes=procs)
@@ -57,6 +56,7 @@ def main(forcefield, dataset, sqlite_file, out_dir, procs, invalidate_cache):
     store.get_rmsd(forcefield,skip_check=True).to_csv(f"{out_dir}/rmsd.csv")
     store.get_tfd(forcefield,skip_check=True).to_csv(f"{out_dir}/tfd.csv")
     store.get_internal_coordinate_rmsd(forcefield,skip_check=True).to_csv(f"{out_dir}/icrmsd.csv")
+
 
 
 if __name__ == "__main__":

@@ -1,3 +1,11 @@
+from openff.qcsubmit.results import OptimizationResultCollection, TorsionDriveResultCollection
+from openff.qcsubmit.results.filters import (
+    ConnectivityFilter,
+    RecordStatusFilter,)
+
+from openff.toolkit import ForceField
+
+from qcportal.record_models import RecordStatusEnum
 import contextlib
 import json
 import itertools
@@ -11,6 +19,13 @@ import tqdm
 
 import dask
 from dask import distributed
+dask.config.set({
+"distributed.comm.timeouts.tcp": "50s",
+"distributed.scheduler.allowed-failures": 999
+})
+
+
+
 
 # The majority of this code is from Lily
 
@@ -122,11 +137,12 @@ def batch_distributed(
 def check_molecule_can_assign_charges(
     smiles: str,
     charge_backend: typing.Literal["openeye", "ambertools"] = "openeye",
+    ff: str = 'openff_unconstrained-2.0.0.offxml'
 ):
     """
     Quick check to assign partial charges
     """
-    from openff.toolkit import Molecule
+    from openff.toolkit import Molecule,ForceField
     from openff.toolkit.utils.toolkit_registry import ToolkitRegistry
     from openff.toolkit.utils import AmberToolsToolkitWrapper, RDKitToolkitWrapper, OpenEyeToolkitWrapper
 
@@ -139,13 +155,23 @@ def check_molecule_can_assign_charges(
     # the actual charge check filter converts to SDF first --
     # the code here can be replaced with that if necessary
     # but requires having qcsubmit available, I think!
+
+    # First, assign charges with AM1BCC. Anything that can be charged with AM1BCC should be good for ELF10, too
     offmol = Molecule.from_mapped_smiles(smiles, allow_undefined_stereo=True)
     offmol.assign_partial_charges("am1bcc", toolkit_registry=registry)
+
+    # Check for FF coverage by creating an interchange, feed these charges in so that it doesn't do expensive ELF10
+    force_field = ForceField(ff)
+    system = force_field.create_interchange(offmol.to_topology(),charge_from_molecules=[offmol]).to_openmm(
+                     combine_nonbonded_forces=False
+                     )
+
 
 
 def batch_label(
     entries: list[dict[str, str]],
     charge_backend: typing.Literal["openeye", "ambertools"] = "openeye",
+    ff:str = 'openff_unconstrained-2.0.0.offxml'
 ):
     new_entries = []
     errors = []
@@ -154,11 +180,14 @@ def batch_label(
             check_molecule_can_assign_charges(
                 entry["cmiles"],
                 charge_backend=charge_backend,
+                ff = ff
             )
         except BaseException as e:
             errors.append((entry["cmiles"], e))
         else:
             new_entries.append(entry)
+
+
     return new_entries, errors
 
 
@@ -183,6 +212,12 @@ def batch_label(
     required=True,
     help="The path to save the filtered dataset to (*.json).",
 )
+@click.option(
+    "--forcefield",
+    "forcefield",
+    type=str,
+    help='force field to check coverage for'
+)   
 @optgroup.group("Parallelization configuration")
 @optgroup.option(
     "--n-workers",
@@ -237,6 +272,7 @@ def main(
     input_dataset: str,
     output_dataset: str,
     charge_backend: typing.Literal["openeye", "ambertools"] = "openeye",
+    forcefield: str='openff_unconstrained-2.0.0.offxml',
     worker_type: typing.Literal["lsf", "local"] = "local",
     queue: str = "cpuqueue",
     conda_environment: str = "openff-nagl",
@@ -248,8 +284,13 @@ def main(
 
     with open(input_dataset, "r") as f:
         contents = json.load(f)
+    all_entries = contents["entries"]["https://api.qcarchive.molssi.org:443/"] 
 
-    all_entries = contents["entries"]["https://api.qcarchive.molssi.org:443/"]
+    #ds = OptimizationResultCollection.parse_file(input_dataset)
+    #print(ds.n_molecules,ds.n_results)
+    #contents = ds.filter(  RecordStatusFilter(status=RecordStatusEnum.complete))
+    #contents = contents.filter(  ConnectivityFilter(tolerance=1.2) )
+    #all_entries = dict(contents)["entries"]["https://api.qcarchive.molssi.org:443/"]
 
     filtered_entries = []
     all_errors = []
@@ -263,16 +304,25 @@ def main(
         walltime=walltime,
         n_workers=n_workers,
     ) as batcher:
-        futures = list(batcher(batch_label, charge_backend=charge_backend))
+        futures = list(batcher(batch_label, charge_backend=charge_backend,ff=forcefield))
         for future in tqdm.tqdm(
             distributed.as_completed(futures, raise_errors=False),
             total=len(futures),
-            desc="Checking charge assignment",
+            desc="Checking charge assignment and coverage",
         ):
             batch, errors = future.result()
             if errors:
                 all_errors.extend(errors)
             filtered_entries.extend(batch)
+
+            temp_ds = {'entries': {'https://api.qcarchive.molssi.org:443/': filtered_entries }}
+            with open('datasets/temp.json','w') as f:
+                json.dump(temp_ds,f,indent=2)
+
+            with open('datasets/temp.err','w') as f:
+                for smiles, error in all_errors:
+                    f.write(f"SMILES: {smiles}\n{error}\n")
+                
     
     print(f"Filtered {len(filtered_entries)} from {len(all_entries)}")
     new_dataset = {
