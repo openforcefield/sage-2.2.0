@@ -1,0 +1,6 @@
+Stats for all data:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75934     0.0000     2.0965  0.06461  0.06461  0.03503  0.08759     6691
+Sage 2.1.0                     75934     0.0000     2.0593  0.06320  0.06320  0.03538  0.08515     6663
+Sage 2.2.0                     75934     0.0000     1.9505  0.06414  0.06414  0.03582  0.08529     6623
+Saving plots to Sage_220_benchmark/tfd/

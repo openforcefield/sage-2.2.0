@@ -1,0 +1,23 @@
+Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
+Stats for all data, with problem molecules excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75829     0.0000     2.0965  0.06450  0.06450  0.03496  0.08751     6683
+Sage 2.1.0                     75829     0.0000     2.0593  0.06306  0.06306  0.03532  0.08500     6650
+Sage 2.2.0                     75829     0.0000     1.9505  0.06402  0.06402  0.03578  0.08520     6613
+Filtering dataset
+Number of molecules kept by filter: 127
+Number of molecules filtered out: 75702
+
+
+Stats for molecules that include sulfamides
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                       127     0.0057     0.4432  0.09681  0.09681  0.06034  0.09617        9
+Sage 2.1.0                       127     0.0014     1.1879  0.10988  0.10988  0.05324  0.15192        7
+Sage 2.2.0                       127     0.0067     0.5378  0.10244  0.10244  0.04965  0.11970       13
+
+Stats for molecules that don't include sulfamides
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75702     0.0000     2.0965  0.06444  0.06444  0.03493  0.08749     6670
+Sage 2.1.0                     75702     0.0000     2.0593  0.06298  0.06298  0.03530  0.08482     6628
+Sage 2.2.0                     75702     0.0000     1.9505  0.06396  0.06396  0.03577  0.08511     6605
+Saving plots to Sage_220_benchmark/problems_removed/sulfamides/tfd/

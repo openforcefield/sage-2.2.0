@@ -1,0 +1,23 @@
+Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
+Stats for all data, with problem molecules excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75829     0.0000     2.0965  0.06450  0.06450  0.03496  0.08751     6683
+Sage 2.1.0                     75829     0.0000     2.0593  0.06306  0.06306  0.03532  0.08500     6650
+Sage 2.2.0                     75829     0.0000     1.9505  0.06402  0.06402  0.03578  0.08520     6613
+Filtering dataset
+Number of molecules kept by filter: 48616
+Number of molecules filtered out: 27213
+
+
+Stats for molecules that include 5_membered_rings
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     48616     0.0000     2.0965  0.06609  0.06609  0.03613  0.08992     4295
+Sage 2.1.0                     48616     0.0000     2.0593  0.06505  0.06505  0.03685  0.08809     4241
+Sage 2.2.0                     48616     0.0000     1.9505  0.06594  0.06594  0.03729  0.08782     4241
+
+Stats for molecules that don't include 5_membered_rings
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     27213     0.0000     1.3701  0.06166  0.06166  0.03275  0.08297     2418
+Sage 2.1.0                     27213     0.0000     1.3886  0.05951  0.05951  0.03280  0.07906     2387
+Sage 2.2.0                     27213     0.0000     1.3933  0.06059  0.06059  0.03294  0.08019     2356
+Saving plots to Sage_220_benchmark/problems_removed/5_membered_rings/tfd/

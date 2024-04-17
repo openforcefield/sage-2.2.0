@@ -1,0 +1,6 @@
+Stats for all data:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     66169  -111.2909    78.4427 -1.05066  1.95749 -0.56846  2.94739     4630
+Sage 2.1.0                     66169  -102.2350    96.4158 -0.66268  1.95331 -0.25391  3.20822     4926
+Sage 2.2.0                     66169  -111.9118    36.1246 -0.78409  1.97703 -0.35204  3.21529     4964
+Saving plots to Sage_220_benchmark/dde/

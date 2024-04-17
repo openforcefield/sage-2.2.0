@@ -1,0 +1,6 @@
+Stats for all data:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75991     0.0001    24.4023  1.95304  1.95304  1.89546  0.55371     2704
+Sage 2.1.0                     75991     0.0001    14.9852  2.02199  2.02199  1.95725  0.58022     2743
+Sage 2.2.0                     75991     0.0001    12.0600  2.12568  2.12568  2.05676  0.57670     2204
+Saving plots to Sage_220_benchmark/icrmsd/

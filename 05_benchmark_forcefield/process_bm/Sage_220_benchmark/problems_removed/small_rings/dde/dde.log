@@ -1,0 +1,23 @@
+Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
+Stats for all data, with problem molecules excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     66078   -56.3732    29.0005 -1.04476  1.94385 -0.56781  2.73360     4621
+Sage 2.1.0                     66078   -44.9074    32.2144 -0.63906  1.92660 -0.25380  2.79749     4905
+Sage 2.2.0                     66078   -44.8053    36.1246 -0.75907  1.95139 -0.35173  2.81751     4941
+Filtering dataset
+Number of molecules kept by filter: 44372
+Number of molecules filtered out: 21706
+
+
+Stats for molecules that include small_rings
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     44372   -56.3732    25.4905 -1.03124  1.87640 -0.55898  2.62218     3148
+Sage 2.1.0                     44372   -44.9074    25.8781 -0.65989  1.86852 -0.26884  2.71086     3296
+Sage 2.2.0                     44372   -44.8053    29.5580 -0.76122  1.88775 -0.35033  2.73382     3436
+
+Stats for molecules that don't include small_rings
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     21706   -52.5342    29.0005 -1.07238  2.08174 -0.58768  2.94810     1407
+Sage 2.1.0                     21706   -29.2334    32.2144 -0.59649  2.04534 -0.22537  2.96626     1535
+Sage 2.2.0                     21706   -38.1803    36.1246 -0.75469  2.08148 -0.35702  2.98130     1448
+Saving plots to Sage_220_benchmark/problems_removed/small_rings/dde/
