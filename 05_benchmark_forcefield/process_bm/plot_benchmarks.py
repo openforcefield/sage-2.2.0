@@ -75,8 +75,9 @@ def print_stats(datasets,labels,lines,outlier_low=False,outlier_high=False):
     longest_label = max([len(label) for label in labels])
     # print(longest_label)
     outliers = get_outliers(datasets,labels,artificial_low=outlier_low,artificial_high=outlier_high)
-    for i,data in enumerate(datasets):
+    for i,ds in enumerate(datasets):
         # print(data)
+        data = ds[~np.isnan(ds)]
 
         lines.append('{:<25s}   {:>-8d} {:>-10.4f} {:>-10.4f} {:>-8.5f} {:>-8.5f} {:>-8.5f} {:>-8.5f} {:>-8d}'.format(labels[i],data.shape[0],data.min(),data.max(),data.mean(),mae(data),np.median(data),data.std(),outliers[i]))
 
@@ -428,19 +429,9 @@ def main(dir,problem_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
         rmsd_idx = [sage_200_lgrmsd_idx,sage_210_lgrmsd_idx,sage_220_lgrmsd_idx]
         lines.append('Number of entries remaining: '+','.join([str(np.count_nonzero(x)) for x in rmsd_idx]))
 
-    print(sage_200_data.shape,sage_210_data.shape,sage_220_data.shape)
-
-    all_data = [sage_200_data[~np.isnan(sage_200_data)],sage_210_data[~np.isnan(sage_210_data)],sage_220_data[~np.isnan(sage_220_data)]]
-    all_ids = [sage_200_ids[rmsd_idx[0]][~np.isnan(sage_200_data)],sage_210_ids[rmsd_idx[1]][~np.isnan(sage_210_data)],sage_220_ids[rmsd_idx[2]][~np.isnan(sage_220_data)]]
+    all_data = [sage_200_data,sage_210_data,sage_220_data]
+    all_ids = [sage_200_ids[rmsd_idx[0]],sage_210_ids[rmsd_idx[1]],sage_220_ids[rmsd_idx[2]]]
     all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
-
-    # hack for now
-    #all_data = [sage_200_data,sage_210_data,sage_220_data]
-    #all_ids = [sage_200_ids,sage_210_ids,sage_220_ids]
-
-    print(np.sum(~np.isnan(sage_200_data)),np.sum(~np.isnan(sage_210_data)),np.sum(~np.isnan(sage_220_data)))
-
-    # print(np.mean(all_data[0][0:5]),np.mean(all_data[0][0:2]))
 
     if len(problem_files)>0:
         dir += 'problems_removed/'
