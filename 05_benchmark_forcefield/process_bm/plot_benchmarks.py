@@ -375,8 +375,6 @@ def main(dir,problem_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
     sage_210_ids,sage_210_data = np.genfromtxt('../openff_unconstrained-2.1.0/{}.csv'.format(type),delimiter = ',',skip_header=1,missing_values='',unpack=True,usecols=(0,icrmsd_idx))
     sage_220_ids,sage_220_data = np.genfromtxt('../openff_unconstrained-2.2.0-rc1/{}.csv'.format(type),delimiter = ',',skip_header=1,missing_values='',unpack=True,usecols=(0,icrmsd_idx))
 
-    print(np.mean(sage_200_data[0:5]),np.mean(sage_200_data[0:2]))
-
     rmsd_idx = [np.full(sage_200_ids.shape, True),np.full(sage_210_ids.shape, True),np.full(sage_220_ids.shape, True)]
     if rmsd_filter:
         dir += 'rmsd_filter/'
@@ -433,7 +431,7 @@ def main(dir,problem_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
     all_ids = [sage_200_ids[rmsd_idx[0]][~np.isnan(sage_200_data)],sage_210_ids[rmsd_idx[1]][~np.isnan(sage_210_data)],sage_220_ids[rmsd_idx[2]][~np.isnan(sage_220_data)]]
     all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
 
-    print(np.mean(all_data[0][0:5]),np.mean(all_data[0][0:2]))
+    # print(np.mean(all_data[0][0:5]),np.mean(all_data[0][0:2]))
 
     if len(problem_files)>0:
         dir += 'problems_removed/'
