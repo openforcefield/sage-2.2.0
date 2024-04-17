@@ -2,13 +2,13 @@ Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx
 Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75570     0.0000    29.5697  1.86942  1.86942  1.31008  1.81107     3946
-Sage 2.1.0                     75565     0.0000    22.9753  2.16728  2.16728  1.51081  2.12801     5271
-Sage 2.2.0                     75543     0.0000    20.5210  2.27187  2.27187  1.61258  2.15988     5049
+Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102     3945
+Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797     5272
+Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986     5049
 Filtering dataset
 Data has different sizes, filtering datasets individually
 Number of molecules kept by filter: 2625
-Number of molecules filtered out: 72945
+Number of molecules filtered out: 72944
 
 
 Stats for molecules that include 5r_S
@@ -19,7 +19,7 @@ Sage 2.2.0                      2625     0.0000    15.7370  2.19607  2.19607  1.
 
 Stats for molecules that don't include 5r_S
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     72945     0.0000    29.5697  1.87135  1.87135  1.31460  1.80961     3814
-Sage 2.1.0                     72940     0.0000    22.9753  2.17042  2.17042  1.51904  2.12214     5031
-Sage 2.2.0                     72918     0.0000    20.5210  2.27460  2.27460  1.61711  2.15690     4855
+Sage 2.0.0                     72944     0.0000    29.5697  1.87130  1.87130  1.31460  1.80956     3813
+Sage 2.1.0                     72939     0.0000    22.9753  2.17036  2.17036  1.51901  2.12209     5031
+Sage 2.2.0                     72917     0.0000    20.5210  2.27455  2.27455  1.61708  2.15687     4855
 Saving plots to Sage_220_benchmark/problems_removed/5r_S/icrmsd/

@@ -5,19 +5,19 @@ Sage 2.0.0                     66078   -56.3732    29.0005 -1.04476  1.94385 -0.
 Sage 2.1.0                     66078   -44.9074    32.2144 -0.63906  1.92660 -0.25380  2.79749     4905
 Sage 2.2.0                     66078   -44.8053    36.1246 -0.75907  1.95139 -0.35173  2.81751     4941
 Filtering dataset
-Number of molecules kept by filter: 42407
-Number of molecules filtered out: 23671
+Number of molecules kept by filter: 45010
+Number of molecules filtered out: 21068
 
 
 Stats for molecules that include 5_membered_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     42407   -56.3732    25.4905 -1.02849  1.86779 -0.55458  2.60697     2929
-Sage 2.1.0                     42407   -44.9074    25.8781 -0.65247  1.85876 -0.26023  2.69668     3127
-Sage 2.2.0                     42407   -44.8053    29.5580 -0.75828  1.87404 -0.34736  2.71557     3294
+Sage 2.0.0                     45010   -56.3732    25.4905 -1.05192  1.89164 -0.57204  2.64945     3099
+Sage 2.1.0                     45010   -44.9074    25.8781 -0.67673  1.88213 -0.28018  2.73947     3353
+Sage 2.2.0                     45010   -44.8053    29.5580 -0.78402  1.89759 -0.36640  2.75455     3477
 
 Stats for molecules that don't include 5_membered_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     23671   -52.5342    29.0005 -1.07390  2.08011 -0.59239  2.94666     1605
-Sage 2.1.0                     23671   -29.2334    32.2144 -0.61505  2.04814 -0.23907  2.96939     1696
-Sage 2.2.0                     23671   -38.1803    36.1246 -0.76050  2.08995 -0.36303  2.99148     1584
+Sage 2.0.0                     21068   -52.5342    29.0005 -1.02946  2.05539 -0.55675  2.90516     1443
+Sage 2.1.0                     21068   -28.8307    32.2144 -0.55859  2.02161 -0.19985  2.91594     1504
+Sage 2.2.0                     21068   -29.2635    36.1246 -0.70578  2.06633 -0.32146  2.94683     1405
 Saving plots to Sage_220_benchmark/problems_removed/5_membered_rings/dde/

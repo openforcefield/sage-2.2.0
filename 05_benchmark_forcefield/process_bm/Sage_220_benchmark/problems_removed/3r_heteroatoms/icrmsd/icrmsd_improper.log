@@ -2,13 +2,13 @@ Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx
 Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75570     0.0000    29.5697  1.86942  1.86942  1.31008  1.81107     3946
-Sage 2.1.0                     75565     0.0000    22.9753  2.16728  2.16728  1.51081  2.12801     5271
-Sage 2.2.0                     75543     0.0000    20.5210  2.27187  2.27187  1.61258  2.15988     5049
+Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102     3945
+Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797     5272
+Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986     5049
 Filtering dataset
 Data has different sizes, filtering datasets individually
 Number of molecules kept by filter: 86
-Number of molecules filtered out: 75484
+Number of molecules filtered out: 75483
 
 
 Stats for molecules that include 3r_heteroatoms
@@ -19,7 +19,7 @@ Sage 2.2.0                        86     0.6111     8.7559  2.85077  2.85077  1.
 
 Stats for molecules that don't include 3r_heteroatoms
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75484     0.0000    29.5697  1.86825  1.86825  1.30907  1.81073     3941
-Sage 2.1.0                     75479     0.0000    22.9753  2.16184  2.16184  1.50849  2.11551     5249
-Sage 2.2.0                     75457     0.0000    20.5210  2.27121  2.27121  1.61245  2.15969     5042
+Sage 2.0.0                     75483     0.0000    29.5697  1.86819  1.86819  1.30907  1.81068     3940
+Sage 2.1.0                     75478     0.0000    22.9753  2.16178  2.16178  1.50849  2.11547     5248
+Sage 2.2.0                     75456     0.0000    20.5210  2.27116  2.27116  1.61242  2.15966     5043
 Saving plots to Sage_220_benchmark/problems_removed/3r_heteroatoms/icrmsd/

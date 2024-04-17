@@ -1,12 +1,12 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75886     0.0001    24.4023  1.94635  1.94635  1.89465  0.51054     2646
-Sage 2.1.0                     75886     0.0001    14.9852  2.01513  2.01513  1.95672  0.53750     2684
-Sage 2.2.0                     75886     0.0001    12.0600  2.11874  2.11874  2.05604  0.53375     2132
+Sage 2.0.0                     75885     0.0001    24.4023  1.94621  1.94621  1.89465  0.50914     2645
+Sage 2.1.0                     75885     0.0001    14.9852  2.01500  2.01500  1.95671  0.53622     2683
+Sage 2.2.0                     75885     0.0001     9.5592  2.11860  2.11860  2.05603  0.53253     2131
 Filtering dataset
 Number of molecules kept by filter: 127
-Number of molecules filtered out: 75759
+Number of molecules filtered out: 75758
 
 
 Stats for molecules that include sulfamides
@@ -17,7 +17,7 @@ Sage 2.2.0                       127     1.4460     3.6457  2.49489  2.49489  2.
 
 Stats for molecules that don't include sulfamides
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75759     0.0001    16.2172  1.94336  1.94336  1.89423  0.47635     2616
-Sage 2.1.0                     75759     0.0001    12.2608  2.01351  2.01351  1.95641  0.52612     2671
-Sage 2.2.0                     75759     0.0001    12.0600  2.11810  2.11810  2.05528  0.53362     2128
+Sage 2.0.0                     75758     0.0001    16.2172  1.94322  1.94322  1.89422  0.47483     2615
+Sage 2.1.0                     75758     0.0001    12.1289  2.01337  2.01337  1.95641  0.52481     2670
+Sage 2.2.0                     75758     0.0001     9.5592  2.11797  2.11797  2.05527  0.53240     2127
 Saving plots to Sage_220_benchmark/problems_removed/sulfamides/icrmsd/

@@ -1,23 +1,23 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75886     0.0000     3.2198  0.25604  0.25604  0.16253  0.26962     6344
-Sage 2.1.0                     75886     0.0000     3.4466  0.25319  0.25319  0.17164  0.25288     6086
-Sage 2.2.0                     75886     0.0000     3.3370  0.25935  0.25935  0.17372  0.25948     6184
+Sage 2.0.0                     75885     0.0000     3.2198  0.25603  0.25603  0.16253  0.26960     6346
+Sage 2.1.0                     75885     0.0000     3.4466  0.25317  0.25317  0.17164  0.25283     6085
+Sage 2.2.0                     75885     0.0000     3.3370  0.25933  0.25933  0.17372  0.25944     6183
 Filtering dataset
-Number of molecules kept by filter: 3554
-Number of molecules filtered out: 72332
+Number of molecules kept by filter: 3760
+Number of molecules filtered out: 72125
 
 
 Stats for molecules that include 3r_C
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                      3554     0.0055     3.2155  0.27045  0.27045  0.16565  0.28989      318
-Sage 2.1.0                      3554     0.0092     3.2109  0.26579  0.26579  0.17059  0.27540      309
-Sage 2.2.0                      3554     0.0124     3.3252  0.27417  0.27417  0.17182  0.28621      339
+Sage 2.0.0                      3760     0.0055     3.2155  0.26768  0.26768  0.16277  0.28996      348
+Sage 2.1.0                      3760     0.0092     3.2109  0.26371  0.26371  0.16816  0.27422      322
+Sage 2.2.0                      3760     0.0124     3.3252  0.27197  0.27197  0.17033  0.28501      355
 
 Stats for molecules that don't include 3r_C
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     72332     0.0000     3.2198  0.25533  0.25533  0.16239  0.26856     6013
-Sage 2.1.0                     72332     0.0000     3.4466  0.25257  0.25257  0.17167  0.25171     5783
-Sage 2.2.0                     72332     0.0000     3.3370  0.25862  0.25862  0.17382  0.25807     5854
+Sage 2.0.0                     72125     0.0000     3.2198  0.25542  0.25542  0.16251  0.26848     5988
+Sage 2.1.0                     72125     0.0000     3.4466  0.25262  0.25262  0.17178  0.25166     5772
+Sage 2.2.0                     72125     0.0000     3.3370  0.25868  0.25868  0.17389  0.25802     5833
 Saving plots to Sage_220_benchmark/problems_removed/3r_C/rmsd/

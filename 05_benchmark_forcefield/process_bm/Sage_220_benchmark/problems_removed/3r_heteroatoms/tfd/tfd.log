@@ -1,12 +1,12 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75829     0.0000     2.0965  0.06450  0.06450  0.03496  0.08751     6683
-Sage 2.1.0                     75829     0.0000     2.0593  0.06306  0.06306  0.03532  0.08500     6650
-Sage 2.2.0                     75829     0.0000     1.9505  0.06402  0.06402  0.03578  0.08520     6613
+Sage 2.0.0                     75828     0.0000     2.0965  0.06450  0.06450  0.03496  0.08751     6684
+Sage 2.1.0                     75828     0.0000     2.0593  0.06305  0.06305  0.03532  0.08498     6649
+Sage 2.2.0                     75828     0.0000     1.9505  0.06402  0.06402  0.03578  0.08517     6612
 Filtering dataset
 Number of molecules kept by filter: 86
-Number of molecules filtered out: 75743
+Number of molecules filtered out: 75742
 
 
 Stats for molecules that include 3r_heteroatoms
@@ -17,7 +17,7 @@ Sage 2.2.0                        86     0.0085     0.2856  0.07711  0.07711  0.
 
 Stats for molecules that don't include 3r_heteroatoms
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75743     0.0000     2.0965  0.06450  0.06450  0.03495  0.08755     6679
-Sage 2.1.0                     75743     0.0000     2.0593  0.06304  0.06304  0.03528  0.08502     6649
-Sage 2.2.0                     75743     0.0000     1.9505  0.06401  0.06401  0.03575  0.08522     6622
+Sage 2.0.0                     75742     0.0000     2.0965  0.06450  0.06450  0.03494  0.08755     6679
+Sage 2.1.0                     75742     0.0000     2.0593  0.06303  0.06303  0.03528  0.08500     6649
+Sage 2.2.0                     75742     0.0000     1.9505  0.06400  0.06400  0.03575  0.08520     6621
 Saving plots to Sage_220_benchmark/problems_removed/3r_heteroatoms/tfd/

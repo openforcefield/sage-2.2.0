@@ -2,24 +2,24 @@ Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx
 Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75878     0.0000    92.8493  7.51731  7.51731  5.41301  6.70942     6124
-Sage 2.1.0                     75879     0.0000    61.9653  7.14236  7.14236  5.43776  5.99647     5324
-Sage 2.2.0                     75879     0.0000    63.1430  7.32549  7.32549  5.59742  6.11927     5277
+Sage 2.0.0                     75877     0.0000    92.8493  7.51698  7.51698  5.41281  6.70882     6123
+Sage 2.1.0                     75878     0.0000    61.9653  7.14195  7.14195  5.43772  5.99542     5323
+Sage 2.2.0                     75878     0.0000    63.1430  7.32510  7.32510  5.59727  6.11838     5277
 Filtering dataset
 Data has different sizes, filtering datasets individually
-Number of molecules kept by filter: 50870
-Number of molecules filtered out: 25008
+Number of molecules kept by filter: 53888
+Number of molecules filtered out: 21989
 
 
 Stats for molecules that include small_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     50870     0.0000    69.1013  7.38566  7.38566  5.37283  6.43996     3996
-Sage 2.1.0                     50870     0.0000    59.6514  7.01484  7.01484  5.34742  5.81443     3512
-Sage 2.2.0                     50870     0.0000    58.9807  7.19246  7.19246  5.50814  5.89507     3421
+Sage 2.0.0                     53888     0.0000    69.1013  7.41341  7.41341  5.41001  6.43393     4185
+Sage 2.1.0                     53888     0.0000    59.6514  7.04833  7.04833  5.38995  5.80580     3649
+Sage 2.2.0                     53888     0.0000    58.9807  7.22784  7.22784  5.55263  5.89482     3583
 
 Stats for molecules that don't include small_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     25008     0.0000    92.8493  7.78512  7.78512  5.51040  7.21918     2143
-Sage 2.1.0                     25009     0.0000    61.9653  7.40174  7.40174  5.61293  6.34276     1869
-Sage 2.2.0                     25009     0.0000    63.1430  7.59609  7.59609  5.78274  6.54335     1908
+Sage 2.0.0                     21989     0.0000    92.8493  7.77078  7.77078  5.42166  7.33289     1943
+Sage 2.1.0                     21990     0.0000    61.9653  7.37137  7.37137  5.54053  6.43076     1697
+Sage 2.2.0                     21990     0.0000    63.1430  7.56346  7.56346  5.70821  6.62843     1715
 Saving plots to Sage_220_benchmark/problems_removed/small_rings/icrmsd/

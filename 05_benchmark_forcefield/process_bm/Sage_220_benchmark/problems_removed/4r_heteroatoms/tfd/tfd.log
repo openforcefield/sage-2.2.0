@@ -1,23 +1,23 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75829     0.0000     2.0965  0.06450  0.06450  0.03496  0.08751     6683
-Sage 2.1.0                     75829     0.0000     2.0593  0.06306  0.06306  0.03532  0.08500     6650
-Sage 2.2.0                     75829     0.0000     1.9505  0.06402  0.06402  0.03578  0.08520     6613
+Sage 2.0.0                     75828     0.0000     2.0965  0.06450  0.06450  0.03496  0.08751     6684
+Sage 2.1.0                     75828     0.0000     2.0593  0.06305  0.06305  0.03532  0.08498     6649
+Sage 2.2.0                     75828     0.0000     1.9505  0.06402  0.06402  0.03578  0.08517     6612
 Filtering dataset
-Number of molecules kept by filter: 225
-Number of molecules filtered out: 75604
+Number of molecules kept by filter: 230
+Number of molecules filtered out: 75598
 
 
 Stats for molecules that include 4r_heteroatoms
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                       225     0.0023     0.3347  0.06610  0.06610  0.04032  0.06834       15
-Sage 2.1.0                       225     0.0032     0.4269  0.06303  0.06303  0.04033  0.07010       23
-Sage 2.2.0                       225     0.0032     0.6304  0.06948  0.06948  0.04427  0.07702       15
+Sage 2.0.0                       230     0.0023     0.3347  0.06590  0.06590  0.04111  0.06772       15
+Sage 2.1.0                       230     0.0032     0.4269  0.06296  0.06296  0.04106  0.06943       23
+Sage 2.2.0                       230     0.0032     0.6304  0.06932  0.06932  0.04453  0.07631       16
 
 Stats for molecules that don't include 4r_heteroatoms
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75604     0.0000     2.0965  0.06449  0.06449  0.03494  0.08757     6665
-Sage 2.1.0                     75604     0.0000     2.0593  0.06306  0.06306  0.03531  0.08504     6627
-Sage 2.2.0                     75604     0.0000     1.9505  0.06401  0.06401  0.03576  0.08522     6602
+Sage 2.0.0                     75598     0.0000     2.0965  0.06449  0.06449  0.03494  0.08757     6665
+Sage 2.1.0                     75598     0.0000     2.0593  0.06306  0.06306  0.03531  0.08502     6626
+Sage 2.2.0                     75598     0.0000     1.9505  0.06400  0.06400  0.03576  0.08520     6601
 Saving plots to Sage_220_benchmark/problems_removed/4r_heteroatoms/tfd/

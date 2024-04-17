@@ -2,13 +2,13 @@ Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx
 Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75570     0.0000    29.5697  1.86942  1.86942  1.31008  1.81107     3946
-Sage 2.1.0                     75565     0.0000    22.9753  2.16728  2.16728  1.51081  2.12801     5271
-Sage 2.2.0                     75543     0.0000    20.5210  2.27187  2.27187  1.61258  2.15988     5049
+Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102     3945
+Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797     5272
+Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986     5049
 Filtering dataset
 Data has different sizes, filtering datasets individually
 Number of molecules kept by filter: 127
-Number of molecules filtered out: 75443
+Number of molecules filtered out: 75442
 
 
 Stats for molecules that include sulfamides
@@ -19,7 +19,7 @@ Sage 2.2.0                       127     0.1058    15.7370  2.96954  2.96954  2.
 
 Stats for molecules that don't include sulfamides
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75443     0.0000    27.0276  1.86652  1.86652  1.31002  1.79783     3928
-Sage 2.1.0                     75438     0.0000    21.0775  2.16410  2.16410  1.50981  2.11759     5258
-Sage 2.2.0                     75416     0.0000    20.5210  2.27069  2.27069  1.61175  2.15881     5045
+Sage 2.0.0                     75442     0.0000    27.0276  1.86646  1.86646  1.31000  1.79778     3927
+Sage 2.1.0                     75437     0.0000    21.0775  2.16404  2.16404  1.50979  2.11755     5258
+Sage 2.2.0                     75415     0.0000    20.5210  2.27065  2.27065  1.61171  2.15879     5046
 Saving plots to Sage_220_benchmark/problems_removed/sulfamides/icrmsd/

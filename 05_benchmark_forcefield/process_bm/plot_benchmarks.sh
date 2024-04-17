@@ -1,15 +1,17 @@
-# !/bin/bash
+#!/bin/bash
+#SBATCH -J plot_bm
+#SBATCH -p standard
+#SBATCH -t 2-00:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --account dmobley_lab
+#SBATCH --export ALL
+#SBATCH --constraint=fastscratch
+#SBATCH -o plot_bm.out
+#SBATCH -e plot_bm.err
 
-
-
-
-
-
-
-
-
-
-
+source ~/.bashrc
+conda activate yammbs
 
 ####
 # ICRMSD -- BONDS
