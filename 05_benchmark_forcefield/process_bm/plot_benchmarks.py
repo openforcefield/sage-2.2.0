@@ -129,19 +129,21 @@ def plot_dde(all_data,all_data_names,dir,type,ic_type,xlim=[-2,2]):
     elif type == 'icrmsd':
         plttype = ic_type
         xlim = [0.9*min([dat.min() for dat in all_data]),max([dat.max() for dat in all_data])*1.1]
-    try:
-        plot_hist(all_data,all_data_names,dir+'{}_sage220_hist.pdf'.format(plttype),xlim=xlim)
-        plt.close()
-        plot_hist(all_data,all_data_names,dir+'{}_sage220_hist_zoom.pdf'.format(plttype),xlim=[-0.5,0.5],lw=2)
-        plt.close()
-        plot_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(plttype),xlim=xlim)
-        plt.close()
-    except ValueError:
-        pass
+    #try:
+    #    plot_hist(all_data,all_data_names,dir+'{}_sage220_hist.pdf'.format(plttype),xlim=xlim)
+    #    plt.close()
+    #    plot_hist(all_data,all_data_names,dir+'{}_sage220_hist_zoom.pdf'.format(plttype),xlim=[-0.5,0.5],lw=2)
+    #    plt.close()
+    #    plot_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(plttype),xlim=xlim)
+    #    plt.close()
+    #except ValueError:
+    #    pass
     try:
         boxplot(all_data,all_data_names,dir+'{}_sage220_boxplot.pdf'.format(plttype))
         plt.close()
-    except ValueError:
+    except ValueError as e:
+        print(e)
+        print([d.shape for d in all_data])
         pass
 
 def plot_conf_filter(kept_by_filter,filtered_out,all_data_names,dir,filter_pattern,type='rmsd'):
@@ -426,10 +428,17 @@ def main(dir,problem_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
         rmsd_idx = [sage_200_lgrmsd_idx,sage_210_lgrmsd_idx,sage_220_lgrmsd_idx]
         lines.append('Number of entries remaining: '+','.join([str(np.count_nonzero(x)) for x in rmsd_idx]))
 
+    print(sage_200_data.shape,sage_210_data.shape,sage_220_data.shape)
 
     all_data = [sage_200_data[~np.isnan(sage_200_data)],sage_210_data[~np.isnan(sage_210_data)],sage_220_data[~np.isnan(sage_220_data)]]
     all_ids = [sage_200_ids[rmsd_idx[0]][~np.isnan(sage_200_data)],sage_210_ids[rmsd_idx[1]][~np.isnan(sage_210_data)],sage_220_ids[rmsd_idx[2]][~np.isnan(sage_220_data)]]
     all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
+
+    # hack for now
+    #all_data = [sage_200_data,sage_210_data,sage_220_data]
+    #all_ids = [sage_200_ids,sage_210_ids,sage_220_ids]
+
+    print(np.sum(~np.isnan(sage_200_data)),np.sum(~np.isnan(sage_210_data)),np.sum(~np.isnan(sage_220_data)))
 
     # print(np.mean(all_data[0][0:5]),np.mean(all_data[0][0:2]))
 
