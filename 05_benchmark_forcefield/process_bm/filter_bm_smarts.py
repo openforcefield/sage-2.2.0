@@ -1,6 +1,3 @@
-from openff.toolkit import Molecule
-from openff.toolkit import ForceField
-from openff.qcsubmit.results import TorsionDriveResultCollection, OptimizationResultCollection
 import numpy as np
 from matplotlib import pyplot as plt
 import copy
@@ -9,11 +6,13 @@ import logging
 logging.getLogger("openff").setLevel(logging.ERROR)
 import sys
 from openff.qcsubmit.results.filters import SMARTSFilter
+from openff.qcsubmit.results import OptimizationResultCollection
 from openff.units import unit
 import pandas as pd
+from openff.toolkit import Molecule, ForceField
 
 
-smarts_to_filter = [['[#7:1]-[#16X4:2](=[#8])(=[#8])~[#7:3]'],['[#7:1]-[#16X4:2](=[#8])(=[#8])~[*:3]'],['#6;r3:1]1@[!#6;r3:2]@[#6;r3:3]1'],['[#6;r3:1]1@[#6;r3:2]@[#6;r3:3]1'], \
+smarts_to_filter = [['[#7:1]-[#16X4:2](=[#8])(=[#8])~[#7:3]'],['[#7:1]-[#16X4:2](=[#8])(=[#8])~[*:3]'],['[#6;r3:1]1@[!#6;r3:2]@[#6;r3:3]1'],['[#6;r3:1]1@[#6;r3:2]@[#6;r3:3]1'], \
                     ['[#6;r4:1]1@[#6;r4:2]@[#6;r4:3]@[#6;r4]1'],['[#7;r4:1]'],['[#8;r4,#7;r4:1]'],['[#8;r4:1]'],['[r5:1]1@[#16;r5:2]@[r5:3]@[r5]@[r5]1'],['[r3:1]'],['[r4:1]'],\
                     ['[r5:1]'],['[r3,r4,r5:1]']]
 #r3, r4, r5, other
