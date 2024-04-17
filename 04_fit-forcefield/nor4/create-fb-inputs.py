@@ -26,7 +26,7 @@ def load_training_data(
         exclude_smarts = pathlib.Path(smarts_to_exclude).read_text().splitlines()
     else:
         exclude_smarts = []
-    
+
     if smiles_to_exclude is not None:
         exclude_smiles = pathlib.Path(smiles_to_exclude).read_text().splitlines()
     else:
@@ -35,15 +35,15 @@ def load_training_data(
     torsion_training_set = TorsionDriveResultCollection.parse_file(torsion_dataset)
     if verbose:
         print(f"Loaded torsion training set with {torsion_training_set.n_results} entries.")
-    
+
     torsion_training_set = torsion_training_set.filter(
         SMARTSFilter(smarts_to_exclude=exclude_smarts),
         SMILESFilter(smiles_to_exclude=exclude_smiles),
     )
-    
+
     if verbose:
         print(f"Filtered torsion training set to {torsion_training_set.n_results} entries.")
-    
+
     optimization_training_set = OptimizationResultCollection.parse_file(optimization_dataset)
     if verbose:
         print(f"Loaded optimization training set with {optimization_training_set.n_results} entries.")
@@ -237,12 +237,13 @@ def generate(
         else:
             parameter = AngleSMIRKS(smirks=smirks, attributes={"k", "angle"})
         target_parameters.append(parameter)
-    
+
     for smirks in valence_smirks["Bonds"]:
         target_parameters.append(BondSMIRKS(smirks=smirks, attributes={"k", "length"}))
-    
+
     ff = ForceField(forcefield)
 
+    # doesn't refit impropers
     torsion_handler = ff.get_parameter_handler("ProperTorsions")
     for smirks in torsion_smirks["ProperTorsions"]:
         original_k = torsion_handler.parameters[smirks].k

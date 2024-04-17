@@ -54,6 +54,7 @@ def mae(array):
     return np.abs(array).mean()
 
 def get_outliers(all_data,all_data_names,artificial_low=False,artificial_high=False):
+    # Get actual outliers--molecules that are outside the IQR
     outlier_ns = []
     for i,data in enumerate(all_data):
         q1, q3 = np.percentile(data, [25, 75])
@@ -68,12 +69,14 @@ def get_outliers(all_data,all_data_names,artificial_low=False,artificial_high=Fa
     return outlier_ns
 
 def print_stats(datasets,labels,lines,outlier_low=False,outlier_high=False):
+    # print(datasets)
     # print('Stats:')
     lines.append('{:<25s}   {:>8s} {:>10s} {:>10s} {:>8s} {:>8s} {:>8s} {:>8s} {:>8s}'.format('Dataset','Size','Min','Max','MSE','MAE','Median','STD','# outliers'))
     longest_label = max([len(label) for label in labels])
     # print(longest_label)
     outliers = get_outliers(datasets,labels,artificial_low=outlier_low,artificial_high=outlier_high)
     for i,data in enumerate(datasets):
+        # print(data)
 
         lines.append('{:<25s}   {:>-8d} {:>-10.4f} {:>-10.4f} {:>-8.5f} {:>-8.5f} {:>-8.5f} {:>-8.5f} {:>-8d}'.format(labels[i],data.shape[0],data.min(),data.max(),data.mean(),mae(data),np.median(data),data.std(),outliers[i]))
 
@@ -306,9 +309,14 @@ def main_filter(dir,all_data,all_data_names,all_ids,filter_file,filter_pattern,t
 
     lines.append('Saving plots to '+ dir)
 
-    with open(dir+'/'+type+'.log','w') as writefile:
-        for line in lines:
-            writefile.write(line+'\n')
+    if type == 'icrmsd':
+        with open(dir+'/'+type+'_'+ic_type+'.log','w') as writefile:
+            for line in lines:
+                writefile.write(line+'\n')
+    else:
+        with open(dir+'/'+type+'.log','w') as writefile:
+            for line in lines:
+                writefile.write(line+'\n')
 
     if type == 'dde' or type == 'icrmsd':
         plot_dde_filter(kept_by_filter,filtered_out,all_data_names,dir,filter_pattern,type,ic_type)
@@ -323,9 +331,14 @@ def main_nofilter(dir,all_data,all_data_names,type,ic_type,lines):
 
     lines.append('Saving plots to '+ dir)
 
-    with open(dir+'/'+type+'.log','w') as writefile:
-        for line in lines:
-            writefile.write(line+'\n')
+    if type == 'icrmsd':
+        with open(dir+'/'+type+'_'+ic_type+'.log','w') as writefile:
+            for line in lines:
+                writefile.write(line+'\n')
+    else:
+        with open(dir+'/'+type+'.log','w') as writefile:
+            for line in lines:
+                writefile.write(line+'\n')
 
     if type == 'dde' or type == 'icrmsd':
         plot_dde(all_data,all_data_names,dir,type,ic_type)
@@ -334,13 +347,13 @@ def main_nofilter(dir,all_data,all_data_names,type,ic_type,lines):
 
 @click.command()
 @click.option('--dir',default='./',help='Directory to save plots to')
-@click.option('--outlier_files',default=[],multiple=True,help='File with outlier IDs to filter out')
+@click.option('--problem_files',default=[],multiple=True,help='File with problem IDs to filter out')
 @click.option('--filter_file',default=[],multiple=True,help='File with IDs of records to filter. Should contain molecules kept by filter. ')
 @click.option('--filter_pattern',default=None,help='Description of filter to be used for titles etc')
 @click.option('--type',type=click.Choice(['dde','rmsd','tfd','icrmsd']),default='dde',help='Property to plot')
 @click.option('--rmsd_filter',help='Whether to filter benchmarks by large RMSD')
 @click.option('--ic_type',type=click.Choice(['bond','angle','dihedral','improper']),default='bond',help='which ICRMSD to plot')
-def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
+def main(dir,problem_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
     # start keeping track of lines for a log file
     lines = []
     # make sure we can use dir by adding a slash and making the directory if necessary
@@ -360,10 +373,11 @@ def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
     # Load in data
     sage_200_ids,sage_200_data = np.genfromtxt('../openff_unconstrained-2.0.0/{}.csv'.format(type),delimiter = ',',skip_header=1,missing_values='',unpack=True,usecols=(0,icrmsd_idx))
     sage_210_ids,sage_210_data = np.genfromtxt('../openff_unconstrained-2.1.0/{}.csv'.format(type),delimiter = ',',skip_header=1,missing_values='',unpack=True,usecols=(0,icrmsd_idx))
-    sage_220nor4_ids,sage_220nor4_data = np.genfromtxt('../openff_unconstrained-2.2.0-rc1-nor4/{}.csv'.format(type),delimiter = ',',skip_header=1,missing_values='',unpack=True,usecols=(0,icrmsd_idx))
+    sage_220_ids,sage_220_data = np.genfromtxt('../openff_unconstrained-2.2.0-rc1/{}.csv'.format(type),delimiter = ',',skip_header=1,missing_values='',unpack=True,usecols=(0,icrmsd_idx))
 
+    print(np.mean(sage_200_data[0:5]),np.mean(sage_200_data[0:2]))
 
-    rmsd_idx = [np.full(sage_200_ids.shape, True),np.full(sage_210_ids.shape, True),np.full(sage_220nor4_ids.shape, True)]
+    rmsd_idx = [np.full(sage_200_ids.shape, True),np.full(sage_210_ids.shape, True),np.full(sage_220_ids.shape, True)]
     if rmsd_filter:
         dir += 'rmsd_filter/'
         if not os.path.isdir(dir):
@@ -372,12 +386,12 @@ def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
         lines.append('Filtering out entries with RMSD > 0.4 A'.format(type))
         sage_200_rmsd_ids,sage_200_rmsds = np.loadtxt('../openff_unconstrained-2.0.0/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
         sage_210_rmsd_ids,sage_210_rmsds = np.loadtxt('../openff_unconstrained-2.1.0/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
-        sage_220nor4_rmsd_ids,sage_220nor4_rmsds = np.loadtxt('../openff_unconstrained-2.2.0-rc1-nor4/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
+        sage_220_rmsd_ids,sage_220_rmsds = np.loadtxt('../openff_unconstrained-2.2.0-rc1/rmsd.csv',delimiter = ',',skiprows=1,unpack=True)
 
         # indices for data to keep--with rmsd < 0.4
         sage_200_lgrmsd_idx = sage_200_rmsds < 0.4
         sage_210_lgrmsd_idx = sage_210_rmsds < 0.4
-        sage_220nor4_lgrmsd_idx = sage_220nor4_rmsds < 0.4
+        sage_220_lgrmsd_idx = sage_220_rmsds < 0.4
         # make sure all the entries are present in all files
         if len(sage_200_rmsd_ids) != len(sage_200_ids):
             if len(sage_200_rmsd_ids) > len(sage_200_ids):
@@ -398,37 +412,38 @@ def main(dir,outlier_files,filter_file,filter_pattern,type,rmsd_filter,ic_type):
                 sage_210_data = sage_210_data[keep_ids_210]
 
 
-        if len(sage_220nor4_rmsd_ids) != len(sage_220nor4_ids):
-            if len(sage_220nor4_rmsd_ids) > len(sage_220nor4_ids):
-                keep_ids_220nor4 = [id in sage_220nor4_ids for id in sage_220nor4_rmsd_ids]
-                sage_220nor4_rmsds = sage_220nor4_rmsds[keep_ids_220nor4]
-                sage_220nor4_lgrmsd_idx = sage_220nor4_lgrmsd_idx[keep_ids_220nor4]
+        if len(sage_220_rmsd_ids) != len(sage_220_ids):
+            if len(sage_220_rmsd_ids) > len(sage_220_ids):
+                keep_ids_220 = [id in sage_220_ids for id in sage_220_rmsd_ids]
+                sage_220_rmsds = sage_220_rmsds[keep_ids_220]
+                sage_220_lgrmsd_idx = sage_220_lgrmsd_idx[keep_ids_220]
             else:
-                keep_ids_220nor4 = [id in sage_220nor4_rmsd_ids for id in sage_220nor4_ids]
-                sage_220nor4_data = sage_220nor4_data[keep_ids_220nor4]
+                keep_ids_220 = [id in sage_220_rmsd_ids for id in sage_220_ids]
+                sage_220_data = sage_220_data[keep_ids_220]
 
 
         sage_200_data = sage_200_data[sage_200_lgrmsd_idx]
         sage_210_data = sage_210_data[sage_210_lgrmsd_idx]
-        sage_220nor4_data = sage_220nor4_data[sage_220nor4_lgrmsd_idx]
-        rmsd_idx = [sage_200_lgrmsd_idx,sage_210_lgrmsd_idx,sage_220nor4_lgrmsd_idx]
+        sage_220_data = sage_220_data[sage_220_lgrmsd_idx]
+        rmsd_idx = [sage_200_lgrmsd_idx,sage_210_lgrmsd_idx,sage_220_lgrmsd_idx]
         lines.append('Number of entries remaining: '+','.join([str(np.count_nonzero(x)) for x in rmsd_idx]))
 
 
-    all_data = [sage_200_data,sage_210_data,sage_220nor4_data]
-    all_ids = [sage_200_ids[rmsd_idx[0]],sage_210_ids[rmsd_idx[1]],sage_220nor4_ids[rmsd_idx[2]]]
+    all_data = [sage_200_data[~np.isnan(sage_200_data)],sage_210_data[~np.isnan(sage_210_data)],sage_220_data[~np.isnan(sage_220_data)]]
+    all_ids = [sage_200_ids[rmsd_idx[0]][~np.isnan(sage_200_data)],sage_210_ids[rmsd_idx[1]][~np.isnan(sage_210_data)],sage_220_ids[rmsd_idx[2]][~np.isnan(sage_220_data)]]
     all_data_names = ['Sage 2.0.0','Sage 2.1.0','Sage 2.2.0']
 
+    print(np.mean(all_data[0][0:5]),np.mean(all_data[0][0:2]))
 
-    if len(outlier_files)>0:
-        dir += 'outliers_removed/'
+    if len(problem_files)>0:
+        dir += 'problems_removed/'
         if not os.path.isdir(dir): # make parent dir if necessary
         # except FileNotFoundError:
             os.mkdir(dir)
 
-        lines.append('Excluding outliers: '+str(outlier_files))
-        all_outliers,all_data,all_outlier_ids,all_ids = filter_data(all_data,all_ids,outlier_files,lines)#,rmsd_idx)
-        lines.append('Stats for all data, with outliers excluded:')
+        lines.append('Excluding problem molecules: '+str(problem_files))
+        all_outliers,all_data,all_outlier_ids,all_ids = filter_data(all_data,all_ids,problem_files,lines)#,rmsd_idx)
+        lines.append('Stats for all data, with problem molecules excluded:')
         # dir += 'outliers'
     else:
         lines.append('Stats for all data:')
