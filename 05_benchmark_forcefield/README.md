@@ -29,11 +29,19 @@ This code will benchmark the forcefield specified with the `-f` option, on the d
 It will also create the `savedir` directory, and save files with the DDE, RMSD, TFD, and ICRMSD for each molecule, organized by QCArchive ID.
 
 ## Analyzing the benchmarks
-The directory `process_bm` contains scripts to process and analyze the benchmarking data. `process_bm/filter_ids` contains files that hold the QCArchive ID's of different subsets of the data, which can be useful for plotting benchmarks for certain functional groups (e.g. 3-membered rings with O, or sulfonamides). `process_bm/outlier_ids` contain files with the QCArchive IDs of known problematic molecules in the benchmarking dataset, which should be removed before analyzing the benchmarks.
+The directory `process_bm` contains scripts to process and analyze the benchmarking data. 
+The included script `plot_benchmarks.py` can be used to plot the results of the benchmarking run. Example usage is in `plot_benchmarks.sh`, which shows how to plot the ICRMSD, DDE, RMSD, TFD, as well as filtered versions of all of these for different subsets of the data, and how to exclude known problematic molecules ("outliers") from the plots.
 
-The included script `plot_benchmarks_nor4.py` can be used to plot the results of the benchmarking run. Example usage is in `plot_benchmarks_nor4.sh`, which shows how to plot the ICRMSD, DDE, RMSD, TFD, as well as filtered versions of all of these for different subsets of the data, and how to exclude known problematic molecules ("outliers") from the plots.
+`process_bm/filter_ids` contains files that hold the QCArchive ID's of different subsets of the data, which can be useful for plotting benchmarks for certain functional groups (e.g. 3-membered rings with O, or sulfonamides). 
 
-Benchmark plots can be found in `Sage_220_nor4_benchmark`.
+`process_bm/problem_ids` contain files with the QCArchive IDs of known problematic molecules in the benchmarking dataset, which should be removed before analyzing the benchmarks.
+The problematic molecules excluded fall into two categories: 7-membered rings with distorted QM structures, and hypervalent S with two lone pairs, shown below. 
+The distorted 7-membered rings are excluded as these are not realistic geometries, so we do not wish to benchmark how well our force fields reproduce these structures.
+The hypervalent S molecules are excluded as they are not assigned an appropriate parameter, and as a result optimize to very incorrect geometries and energies. 
+This is a known problem we are working to address, but in the mean time they do not provide a useful assessment of the performance of our force fields.
+![problem_molecules](https://github.com/openforcefield/sage-2.2.0/assets/29759281/d8a8051e-444c-4e1a-9c3a-774d32f87a1b)
+
+Benchmark plots can be found in `Sage_220_benchmark`.
 
 ## Canary/smoke tests
 
