@@ -1,25 +1,32 @@
 # Benchmarking the performance of the Sage 2.2.0 fit
 
 ## Environment
-The python environment that can be used to run the benchmarking suite is included as `ib-env.yaml`. 
+The python environment that can be used to run the benchmarking suite is included as `yammbs-env.yaml`. 
+All data here was generated and analyzed with this environment. THe full environment is included as `yammbs-env-full.yaml` 
 
-The `sqlite` databases and dde, rmsd, and tfd data were all generated with the environment `ib-env-full.yaml` which contains slightly different packages than the included environment. After setting up that environment, we downloaded the IBStore code version ibstore-0+untagged.112.gde80859, specifically this [commit](https://github.com/mattwthompson/ib/commit/de80859f37b345845f9a7ba5240a4279e5913458) and installed it with `pip install -e .`.
+## Downloading and caching the benchmark dataset
+We benchmark using the dataset `OpenFF-Industry-Benchmark-Season-1-v1.1`. 
+First, we download this file from QCArchive, and filter out incomplete records or molecules with connectivity changes, using the script `download_dataset.py`.
+We then use the script `filter_dataset_parallel.py` to filter out molecules that cannot be assigned charges, or do not have full parameter coverage with our force fields.
+These scripts can be run with the submit script `submit_download_dataset.sh`.
+Alternatively, the filtered dataset is included in `datasets/OpenFF-Industry-Benchmark-Season-1-v1.1-filtered-charge-coverage.json`.
 
-The internal coordinate rmsd data was generated using the environment `ib-env2-full.yaml`, but should be able to be generated with the enclosed environment.
-
-The conda environment for analyzing the benchmarks is `ib-env-analysis.yaml`.
+We then cache the dataset, for faster use with the YAMMBS benchmarking code. 
+This can be accomplished with the script `cache_dataset.py`, run using `submit_cache_dataset.sh`. 
 
 ## Benchmarking the force fields
-To generate the benchmarking data, you can use one of the `submit.sh` scripts. As an example, here is `submit_sage220_nor4.sh`, which was used to generate benchmarking data for this release candidate:
+To generate the benchmarking data, you can use one of the `submit.sh` scripts. As an example, here is `submit_sage220.sh`, which was used to generate benchmarking data for this release candidate:
 
 ```bash
-savedir="openff_unconstrained-2.2.0-rc1-nor4"
+savedir="openff_unconstrained-2.2.0-rc1"
 
-python  benchmark.py -f "../04_fit-forcefield/nor4/fb-fit/result/optimize/force-field.offxml" -d "datasets/filtered-industry.json" -s "openff_unconstrained-2.2.0-rc1-nor4.sqlite" -o $savedir --procs 8
+python -u  benchmark.py -f "openff_unconstrained-2.2.0-rc1.offxml" -d "datasets/OpenFF-Industry-Benchmark-Season-1-v1.1-filtered-charge-coverage-cache.json" -s "openff_unconstrained-2.2.0-rc1.sqlite" -o $savedir --procs 16
+
+date
 ```
 
 This code will benchmark the forcefield specified with the `-f` option, on the dataset specified by `-d`, and save the optimized geometries and energies to an SQLite database specified by `-s`.
-It will also create the `savedir` directory, and save files with the DDE, RMSD, and TFD for each molecule, organized by QCArchive ID.
+It will also create the `savedir` directory, and save files with the DDE, RMSD, TFD, and ICRMSD for each molecule, organized by QCArchive ID.
 
 ## Analyzing the benchmarks
 The directory `process_bm` contains scripts to process and analyze the benchmarking data. `process_bm/filter_ids` contains files that hold the QCArchive ID's of different subsets of the data, which can be useful for plotting benchmarks for certain functional groups (e.g. 3-membered rings with O, or sulfonamides). `process_bm/outlier_ids` contain files with the QCArchive IDs of known problematic molecules in the benchmarking dataset, which should be removed before analyzing the benchmarks.
