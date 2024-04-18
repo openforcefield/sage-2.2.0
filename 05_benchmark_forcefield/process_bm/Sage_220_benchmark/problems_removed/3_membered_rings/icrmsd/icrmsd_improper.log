@@ -1,25 +1,23 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
-Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102     3945
-Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797     5272
-Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986     5049
+Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102        0
+Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797        0
+Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986        0
 Filtering dataset
-Data has different sizes, filtering datasets individually
-Number of molecules kept by filter: 3845
-Number of molecules filtered out: 71724
+Number of molecules kept by filter: 3846
+Number of molecules filtered out: 72039
 
 
 Stats for molecules that include 3_membered_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                      3845     0.0007    19.2462  1.97657  1.97657  1.45744  1.81536      208
-Sage 2.1.0                      3845     0.0009    16.8401  2.27947  2.27947  1.63238  2.25088      275
-Sage 2.2.0                      3845     0.0011    15.4388  2.23130  2.23130  1.71910  1.93112      253
+Sage 2.0.0                      3845     0.0007    19.2462  1.97657  1.97657  1.45744  1.81536        0
+Sage 2.1.0                      3845     0.0009    16.8401  2.27947  2.27947  1.63238  2.25088        0
+Sage 2.2.0                      3845     0.0011    15.4388  2.23130  2.23130  1.71910  1.93112        0
 
 Stats for molecules that don't include 3_membered_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     71724     0.0000    29.5697  1.86362  1.86362  1.30024  1.81061     3741
-Sage 2.1.0                     71719     0.0000    22.9753  2.16120  2.16120  1.50150  2.12101     4977
-Sage 2.2.0                     71697     0.0000    20.5210  2.27399  2.27399  1.60568  2.17142     4783
+Sage 2.0.0                     71724     0.0000    29.5697  1.86362  1.86362  1.30024  1.81061        0
+Sage 2.1.0                     71719     0.0000    22.9753  2.16120  2.16120  1.50150  2.12101        0
+Sage 2.2.0                     71697     0.0000    20.5210  2.27399  2.27399  1.60568  2.17142        0
 Saving plots to Sage_220_benchmark/problems_removed/3_membered_rings/icrmsd/

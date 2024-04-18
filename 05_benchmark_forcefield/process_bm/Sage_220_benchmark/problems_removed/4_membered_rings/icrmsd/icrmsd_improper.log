@@ -1,14 +1,12 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
-Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102     3945
-Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797     5272
-Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986     5049
+Sage 2.0.0                     75569     0.0000    29.5697  1.86937  1.86937  1.31006  1.81102        0
+Sage 2.1.0                     75564     0.0000    22.9753  2.16722  2.16722  1.51080  2.12797        0
+Sage 2.2.0                     75542     0.0000    20.5210  2.27182  2.27182  1.61254  2.15986        0
 Filtering dataset
-Data has different sizes, filtering datasets individually
 Number of molecules kept by filter: 4256
-Number of molecules filtered out: 71313
+Number of molecules filtered out: 71629
 
 
 Stats for molecules that include 4_membered_rings
@@ -19,7 +17,7 @@ Sage 2.2.0                      4256     0.0007    20.0279  2.76423  2.76423  2.
 
 Stats for molecules that don't include 4_membered_rings
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     71313     0.0000    29.5697  1.85654  1.85654  1.30074  1.81199     3863
-Sage 2.1.0                     71308     0.0000    22.9753  2.15734  2.15734  1.49975  2.12314     4943
-Sage 2.2.0                     71286     0.0000    20.5210  2.24242  2.24242  1.59081  2.13839     4760
+Sage 2.0.0                     71313     0.0000    29.5697  1.85654  1.85654  1.30074  1.81199        0
+Sage 2.1.0                     71308     0.0000    22.9753  2.15734  2.15734  1.49975  2.12314        0
+Sage 2.2.0                     71286     0.0000    20.5210  2.24242  2.24242  1.59081  2.13839        0
 Saving plots to Sage_220_benchmark/problems_removed/4_membered_rings/icrmsd/

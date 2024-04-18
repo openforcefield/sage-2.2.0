@@ -1,25 +1,23 @@
 Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
-Data has different sizes, filtering datasets individually
 Stats for all data, with problem molecules excluded:
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     75877     0.0000    92.8493  7.51698  7.51698  5.41281  6.70882     6123
-Sage 2.1.0                     75878     0.0000    61.9653  7.14195  7.14195  5.43772  5.99542     5323
-Sage 2.2.0                     75878     0.0000    63.1430  7.32510  7.32510  5.59727  6.11838     5277
+Sage 2.0.0                     75877     0.0000    92.8493  7.51698  7.51698  5.41281  6.70882        0
+Sage 2.1.0                     75878     0.0000    61.9653  7.14195  7.14195  5.43772  5.99542        0
+Sage 2.2.0                     75878     0.0000    63.1430  7.32510  7.32510  5.59727  6.11838        0
 Filtering dataset
-Data has different sizes, filtering datasets individually
-Number of molecules kept by filter: 6197
-Number of molecules filtered out: 69680
+Number of molecules kept by filter: 6198
+Number of molecules filtered out: 69687
 
 
 Stats for molecules that include sulfonamides
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                      6197     0.3280    92.8493  9.27867  9.27867  6.74853  8.03848      465
-Sage 2.1.0                      6197     0.3342    53.8009  8.67899  8.67899  6.61169  6.65407      472
+Sage 2.0.0                      6197     0.3280    92.8493  9.27867  9.27867  6.74853  8.03848        0
+Sage 2.1.0                      6197     0.3342    53.8009  8.67899  8.67899  6.61169  6.65407        0
 Sage 2.2.0                      6198     0.2662    63.1430  9.24126  9.24126  7.21837  6.91237      416
 
 Stats for molecules that don't include sulfonamides
 Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
-Sage 2.0.0                     69680     0.0000    69.1013  7.36030  7.36030  5.31365  6.55468     5711
-Sage 2.1.0                     69681     0.0000    61.9653  7.00525  7.00525  5.33021  5.91399     4793
-Sage 2.2.0                     69680     0.0000    62.6109  7.15466  7.15466  5.46550  6.01321     4866
+Sage 2.0.0                     69680     0.0000    69.1013  7.36030  7.36030  5.31365  6.55468        0
+Sage 2.1.0                     69681     0.0000    61.9653  7.00525  7.00525  5.33021  5.91399        0
+Sage 2.2.0                     69680     0.0000    62.6109  7.15466  7.15466  5.46550  6.01321        0
 Saving plots to Sage_220_benchmark/problems_removed/sulfonamides/icrmsd/
