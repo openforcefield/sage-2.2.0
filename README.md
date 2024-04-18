@@ -56,7 +56,7 @@ priors
 
 ### Other changes
 - New parameter `a13a` to split out molecules where the central atom has 4 bonds.
-- Removed parameter 22a which was subsumed into `a41`
+- Removed parameter `a22a` which was subsumed into `a41`
 - `t65` SMIRKs was changed from `[*:1]-[#6X4:2]-[#7X3$(*~[#8X1]):3]~[#8X1:4]` to `[*:1]-[#6X4:2]-[#7X3:3](~[#8X1])~[#8X1:4]`
 - `t123` was removed, as it was redundant with `t123a` and `t124`.
 
