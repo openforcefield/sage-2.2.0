@@ -130,15 +130,15 @@ def plot_dde(all_data,all_data_names,dir,type,ic_type,xlim=[-2,2]):
     elif type == 'icrmsd':
         plttype = ic_type
         xlim = [0.9*min([dat.min() for dat in all_data]),max([dat.max() for dat in all_data])*1.1]
-    #try:
-    #    plot_hist(all_data,all_data_names,dir+'{}_sage220_hist.pdf'.format(plttype),xlim=xlim)
-    #    plt.close()
-    #    plot_hist(all_data,all_data_names,dir+'{}_sage220_hist_zoom.pdf'.format(plttype),xlim=[-0.5,0.5],lw=2)
-    #    plt.close()
-    #    plot_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(plttype),xlim=xlim)
-    #    plt.close()
-    #except ValueError:
-    #    pass
+    try:
+        plot_hist(all_data,all_data_names,dir+'{}_sage220_hist.pdf'.format(plttype),xlim=xlim)
+        plt.close()
+        plot_hist(all_data,all_data_names,dir+'{}_sage220_hist_zoom.pdf'.format(plttype),xlim=[-0.5,0.5],lw=2)
+        plt.close()
+        plot_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(plttype),xlim=xlim)
+        plt.close()
+    except ValueError:
+        pass
     try:
         boxplot(all_data,all_data_names,dir+'{}_sage220_boxplot.pdf'.format(plttype))
         plt.close()
