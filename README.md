@@ -62,12 +62,15 @@ We benchmarked the Sage 2.2.0 release candidate on the industry benchmarking dat
 
 ![overall_bm](https://github.com/openforcefield/sage-2.2.0/assets/29759281/c6cdfb43-912a-4c7d-996d-0507e92f55af)
 
-Overall, Sage 2.2.0 performs very similarly to Sgae 2.1.0, but a few specific geometry errors have been fixed, as described below.
+Overall, Sage 2.2.0 performs very similarly to Sgae 2.1.0, but a few specific geometry errors have been fixed, as described below. These improvements can be seen in the internal coordinate RMS error, shown below. Each datapoint shows the RMS error in bond length (angle, dihedral angle, and improper dihedral angle) across all bonds (angles, dihedrals, impropers) in a given molecule.
+![icrmsd](https://github.com/openforcefield/sage-2.2.0/assets/29759281/e8f661dc-bb95-4c46-8cd8-cc136b52c1b4)
+
 
 ### Heteroatomic 3-membered ring improvements
 
 Treating the C-O-C epoxy internal angle with `a28` in Sage 2.1.0 led to a distorted geometry that has been remedied in Sage 2.2.0. The plot below shows the internal coordinate RMS error for molecules with heteroatomic 3-membered rings, and an example geometry with the problematic bonds and angles listed.
-  ![3r_heteroatom](https://github.com/openforcefield/sage-2.2.0/assets/29759281/5c17b6ac-03bc-4b8f-8f7d-099695b2ab51)
+![3r_heteroatom_icrmsd](https://github.com/openforcefield/sage-2.2.0/assets/29759281/7136b4eb-89f4-4bde-8e89-c3215059ad94)
+
 
 
 ### Sulfamide improvements
@@ -75,4 +78,8 @@ The plots below show the value of the angles assigned to parameter `a32` for mol
 
 Additionally, we show an example sulfamide molecule that highlights the improvement in these geometries with its problematic angles listed.
 ![sulfamides](https://github.com/openforcefield/sage-2.2.0/assets/29759281/2355f22b-d802-41ca-9409-584606293a06)
+
+This improvement can also be seen in the internal coordinate RMS error for molecules that have the sulfamide moiety.
+![sulfamide_icrmsd](https://github.com/openforcefield/sage-2.2.0/assets/29759281/210c9e07-3a7b-49e2-b6f4-02216ee9d12a)
+
 
