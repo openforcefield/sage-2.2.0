@@ -29,7 +29,7 @@ def plot_hist(datasets,labels,filename,title='Industry dataset',xlim=[-2,2],ylim
     if np.any(ylim): plt.ylim(ylim[0],ylim[1])
     plt.savefig(filename)
 
-def plot_kde(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2,2]):
+def plot_kde(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2,2],cumulative=False):
     if bw > .5:
         gs = 1
     elif bw > .2:
@@ -41,12 +41,33 @@ def plot_kde(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2,2])
     plt.figure()
     plt.axvline(x=0,linestyle='--',color='k',linewidth=0.5)
     for i,data in enumerate(datasets):
-        sns.kdeplot(data,bw_adjust=bw,gridsize=10000*gs,label=labels[i])
+        sns.kdeplot(data,bw_adjust=bw,gridsize=10000*gs,label=labels[i],cumulative=cumulative)
 
     plt.xlim(xlim[0],xlim[1])
     plt.title(title)
     plt.ylabel('Density')
     plt.xlabel('DDE (kcal/mol)')
+    plt.legend()
+    plt.savefig(filename)
+
+def plot_cdf(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2,2],xaxis='RMSD (A)'):
+    if bw > .5:
+        gs = 1
+    elif bw > .2:
+        gs = 2
+    else:
+        gs = 3
+
+    # Industry
+    plt.figure()
+    plt.axvline(x=0,linestyle='--',color='k',linewidth=0.5)
+    for i,data in enumerate(datasets):
+        sns.kdeplot(data,bw_adjust=bw,gridsize=10000*gs,label=labels[i],cumulative=True)
+
+    plt.xlim(xlim[0],xlim[1])
+    plt.title(title)
+    plt.ylabel('Density')
+    plt.xlabel(xaxis)
     plt.legend()
     plt.savefig(filename)
 
@@ -114,9 +135,15 @@ def plot_log_kde(datasets,labels,filename,title='Industry dataset',bw=1,xlim=[-2
 def plot_conf(all_data,all_data_names,dir,type='rmsd'):
     if type == 'tfd':
         xlab = 'TFD'
+        xlim1 = [0,0.5]
+        xlim2 = [-5,0.2]
     else:
         xlab = "RMSD (Log A)"
-    plot_log_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(type),xlabel=xlab)
+        xlim1 = [0,1]
+        xlim2 = [-2,1]
+    plot_log_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(type),xlabel=xlab,xlim=xlim2)
+    plt.close()
+    plot_cdf(all_data,all_data_names,dir+'{}_sage220_cdf.pdf'.format(type),xlim=xlim1,xaxis=xlab)
     plt.close()
     try:
         boxplot(all_data,all_data_names,dir+'{}_sage220_boxplot.pdf'.format(type))
@@ -136,6 +163,8 @@ def plot_dde(all_data,all_data_names,dir,type,ic_type,xlim=[-2,2]):
         plot_hist(all_data,all_data_names,dir+'{}_sage220_hist_zoom.pdf'.format(plttype),xlim=[-0.5,0.5],lw=2)
         plt.close()
         plot_kde(all_data,all_data_names,dir+'{}_sage220_kde.pdf'.format(plttype),xlim=xlim)
+        plt.close()
+        plot_kde(all_data,all_data_names,dir+'{}_sage220_cdf.pdf'.format(plttype),xlim=[-10,10],cumulative=True)
         plt.close()
     except ValueError:
         pass
