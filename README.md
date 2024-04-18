@@ -1,5 +1,5 @@
 # Sage-2.2.0
-Repository for re-fitting Sage 2.2.0
+Repository for re-fitting Sage 2.2.0. This re-fit addresses issues with the geometry of epoxide groups and sulfamide groups, as well as introduces some new 5-membered ring internal angles, removes redundant parameters, and simplifies the SMIRKs pattern of one torsion.
 
 ## Fitting pipeline
 The code that was used to produce the fit is all included here, and should be reproducible. The fit is performed in several steps, with instructions for how to run each step in the `README` file in each directory:
@@ -33,7 +33,7 @@ The following changes were made to the small ring angles:
 
 * `a3 [*;r3:1]1~;@[*;r3:2]~;@[*;r3:3]1` moved to the end of the angle list, in order to supersede parameter `a28` which was being used for epoxy internal angles prior to Sage 2.2. `a28`'s equilibrium angle value is around 112 degrees, while the epoxy internal angle should be around 60 degrees. 
 
-* `a13a [*;r6:1]~;@[*;r5;x4,*;r5;X4:2]~;@[*;r5;x2:3]` was split off from `a13 [*;r6:1]~;@[*;r5:2]~;@[*;r5;x2:3]` to handle cases where the atoms involved are all singly bonded, instead of aromatic.
+* `a13a [*;r6:1]~;@[*;r5;x4,*;r5;X4:2]~;@[*;r5;x2:3]` was split off from `a13 [*;r6:1]~;@[*;r5:2]~;@[*;r5;x2:3]` to handle cases where the central atom has 4 bonds.
 
 * `a41 [*;r5:1]1@[*;r5:2]@[*;r5:3]@[*;r5]@[*;r5]1` was created as a new parameter to handle 5-membered ring internal angles.
 
@@ -55,7 +55,6 @@ priors
 ```
 
 ### Other changes
-- New parameter `a13a` to split out molecules where the central atom has 4 bonds.
 - Removed parameter `a22a` which was subsumed into `a41`
 - `t65` SMIRKs was changed from `[*:1]-[#6X4:2]-[#7X3$(*~[#8X1]):3]~[#8X1:4]` to `[*:1]-[#6X4:2]-[#7X3:3](~[#8X1])~[#8X1:4]`
 - `t123` was removed, as it was redundant with `t123a` and `t124`.
