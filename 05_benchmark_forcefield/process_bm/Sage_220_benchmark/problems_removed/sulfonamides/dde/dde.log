@@ -1,0 +1,23 @@
+Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
+Stats for all data, with problem molecules excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     66078   -56.3732    29.0005 -1.04476  1.94385 -0.56781  2.73360     4621
+Sage 2.1.0                     66078   -44.9074    32.2144 -0.63906  1.92660 -0.25380  2.79749     4905
+Sage 2.2.0                     66078   -44.8053    36.1246 -0.75907  1.95139 -0.35173  2.81751     4941
+Filtering dataset
+Number of molecules kept by filter: 5425
+Number of molecules filtered out: 60653
+
+
+Stats for molecules that include sulfonamides
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                      5425   -20.0539    29.0005 -1.04768  2.18803 -0.67368  2.97560      268
+Sage 2.1.0                      5425   -20.8178    32.2144 -0.86729  2.33419 -0.51829  3.14286      218
+Sage 2.2.0                      5425   -22.6911    36.1246 -0.94030  2.41115 -0.63148  3.28058      260
+
+Stats for molecules that don't include sulfonamides
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     60653   -56.3732    25.4905 -1.04450  1.92201 -0.56069  2.71090     4300
+Sage 2.1.0                     60653   -44.9074    25.8781 -0.61865  1.89015 -0.23771  2.76358     4629
+Sage 2.2.0                     60653   -44.8053    29.5580 -0.74286  1.91027 -0.33727  2.77175     4681
+Saving plots to Sage_220_benchmark/problems_removed/sulfonamides/dde/

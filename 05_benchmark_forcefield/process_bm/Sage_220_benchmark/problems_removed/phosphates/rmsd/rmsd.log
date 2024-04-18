@@ -1,0 +1,23 @@
+Excluding problem molecules: ('problem_ids/all_r7_outliers.txt', 'problem_ids/sx4_outliers.txt')
+Stats for all data, with problem molecules excluded:
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75885     0.0000     3.2198  0.25603  0.25603  0.16253  0.26960     6346
+Sage 2.1.0                     75885     0.0000     3.4466  0.25317  0.25317  0.17164  0.25283     6085
+Sage 2.2.0                     75885     0.0000     3.3370  0.25933  0.25933  0.17372  0.25944     6183
+Filtering dataset
+Number of molecules kept by filter: 89
+Number of molecules filtered out: 75796
+
+
+Stats for molecules that include phosphates
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                        89     0.1102     1.1235  0.40404  0.40404  0.34751  0.22772        2
+Sage 2.1.0                        89     0.0881     1.7192  0.45200  0.45200  0.38851  0.27623        4
+Sage 2.2.0                        89     0.0883     1.7016  0.43690  0.43690  0.35106  0.28067        3
+
+Stats for molecules that don't include phosphates
+Dataset                         Size        Min        Max      MSE      MAE   Median      STD # outliers
+Sage 2.0.0                     75796     0.0000     3.2198  0.25586  0.25586  0.16237  0.26960     6333
+Sage 2.1.0                     75796     0.0000     3.4466  0.25294  0.25294  0.17142  0.25271     6085
+Sage 2.2.0                     75796     0.0000     3.3370  0.25913  0.25913  0.17349  0.25934     6177
+Saving plots to Sage_220_benchmark/problems_removed/phosphates/rmsd/

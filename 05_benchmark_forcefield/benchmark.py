@@ -4,7 +4,7 @@ import time
 import warnings
 
 import click
-from ibstore import MoleculeStore
+from yammbs import MoleculeStore
 from openff.qcsubmit.results import OptimizationResultCollection
 from multiprocessing import freeze_support
 
@@ -16,6 +16,8 @@ logging.getLogger("openff").setLevel(logging.ERROR)
 warnings.filterwarnings(
     "ignore", message="divide by zero", category=RuntimeWarning
 )
+
+from yammbs.cached_result import CachedResultCollection
 
 # this code is from Brent's benchmarking repo
 
@@ -33,12 +35,15 @@ def main(forcefield, dataset, sqlite_file, out_dir, procs, invalidate_cache):
         print(f"loading existing database from {sqlite_file}")
         store = MoleculeStore(sqlite_file)
     else:
-        print(f"loading initial dataset from {dataset}")
-        opt = OptimizationResultCollection.parse_file(dataset)
+        #print(f"loading initial dataset from {dataset}")
+        #opt = OptimizationResultCollection.parse_file(dataset)
 
-        print(f"generating database, saving to {sqlite_file}")
-        store = MoleculeStore.from_qcsubmit_collection(opt, sqlite_file)
+        #print(f"generating database, saving to {sqlite_file}")
+        #store = MoleculeStore.from_qcsubmit_collection(opt, sqlite_file)
+        print(f"loading cached results from {dataset}",flush=True)
+        cache = CachedResultCollection.from_json(dataset)
 
+        store=MoleculeStore.from_cached_result_collection(cache,sqlite_file)
     print("started optimizing store")
     start = time.time()
     store.optimize_mm(force_field=forcefield, n_processes=procs)
@@ -47,10 +52,11 @@ def main(forcefield, dataset, sqlite_file, out_dir, procs, invalidate_cache):
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
-    store.get_dde(forcefield).to_csv(f"{out_dir}/dde.csv")
-    store.get_rmsd(forcefield).to_csv(f"{out_dir}/rmsd.csv")
-    store.get_tfd(forcefield).to_csv(f"{out_dir}/tfd.csv")
-    store.get_internal_coordinate_rmsd(forcefield).to_csv(f"{out_dir}/icrmsd.csv")
+    store.get_dde(forcefield,skip_check=True).to_csv(f"{out_dir}/dde.csv")
+    store.get_rmsd(forcefield,skip_check=True).to_csv(f"{out_dir}/rmsd.csv")
+    store.get_tfd(forcefield,skip_check=True).to_csv(f"{out_dir}/tfd.csv")
+    store.get_internal_coordinate_rmsd(forcefield,skip_check=True).to_csv(f"{out_dir}/icrmsd.csv")
+
 
 
 if __name__ == "__main__":

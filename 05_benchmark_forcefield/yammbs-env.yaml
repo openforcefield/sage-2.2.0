@@ -1,0 +1,34 @@
+name: yammbs 
+channels:
+  - conda-forge
+  - openeye
+dependencies:
+  - python
+  - pip
+  - click
+  - openff-toolkit
+  - openff-qcsubmit
+  - openmmforcefields
+  - openeye::openeye-toolkits=2022.1.1
+  - openff-interchange-base>=0.3.18
+  - qcportal=0.53
+  - geometric=1
+  - jupyter
+  - seaborn
+  - pandas
+  - pydantic =2
+  - ipython
+  - ipdb
+  - pre-commit
+  - rich
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+  - pytest-randomly
+  - pytest-timeout
+  - smirnoff-plugins
+  - click-option-group
+  - dask
+  - dask-jobqueue
+  - pip:
+    - git+https://github.com/openforcefield/yammbs.git@91b1ae1
