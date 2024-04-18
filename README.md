@@ -54,13 +54,17 @@ priors
 /priors
 ```
 
+### Other changes
+- `t65` SMIRKs was changed from `[*:1]-[#6X4:2]-[#7X3$(*~[#8X1]):3]~[#8X1:4]` to `[*:1]-[#6X4:2]-[#7X3:3](~[#8X1])~[#8X1:4]`
+- `t123` was removed, as it was redundant with `t123a` and `t124`.
+  
 
 ## Benchmarking results
 
 ### Overall performance
 We benchmarked the Sage 2.2.0 release candidate on the industry benchmarking dataset. The results can be seen below for the ddEs, RMSD, and TFD. 
 
-![overall_bm](https://github.com/openforcefield/sage-2.2.0/assets/29759281/c6cdfb43-912a-4c7d-996d-0507e92f55af)
+![whole_ds](https://github.com/openforcefield/sage-2.2.0/assets/29759281/5e8b48e1-9c33-4d52-95d4-6f1e89d96563)
 
 Overall, Sage 2.2.0 performs very similarly to Sgae 2.1.0, but a few specific geometry errors have been fixed, as described below. These improvements can be seen in the internal coordinate RMS error, shown below. Each datapoint shows the RMS error in bond length (angle, dihedral angle, and improper dihedral angle) across all bonds (angles, dihedrals, impropers) in a given molecule.
 ![icrmsd](https://github.com/openforcefield/sage-2.2.0/assets/29759281/e8f661dc-bb95-4c46-8cd8-cc136b52c1b4)
