@@ -67,7 +67,7 @@ We benchmarked the Sage 2.2.0 release candidate on the industry benchmarking dat
 
 ![whole_ds](https://github.com/openforcefield/sage-2.2.0/assets/29759281/5e8b48e1-9c33-4d52-95d4-6f1e89d96563)
 
-Overall, Sage 2.2.0 performs very similarly to Sgae 2.1.0, but a few specific geometry errors have been fixed, as described below. These improvements can be seen in the internal coordinate RMS error, shown below. Each datapoint shows the RMS error in bond length (angle, dihedral angle, and improper dihedral angle) across all bonds (angles, dihedrals, impropers) in a given molecule.
+Overall, Sage 2.2.0 performs very similarly to Sage 2.1.0, but a few specific geometry errors have been fixed, as described below. These improvements can be seen in the internal coordinate RMS error, shown below. Each datapoint shows the RMS error in bond length (angle, dihedral angle, and improper dihedral angle) across all bonds (angles, dihedrals, impropers) in a given molecule.
 ![icrmsd](https://github.com/openforcefield/sage-2.2.0/assets/29759281/e8f661dc-bb95-4c46-8cd8-cc136b52c1b4)
 
 ### Heteroatomic 3-membered ring improvements
