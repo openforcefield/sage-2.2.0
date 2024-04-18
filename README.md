@@ -1,5 +1,7 @@
 # Sage-2.2.0
-Repository for re-fitting Sage 2.2.0. This re-fit addresses issues with the geometry of epoxide groups and sulfamide groups, as well as introduces some new 5-membered ring internal angles, removes redundant parameters, and simplifies the SMIRKs pattern of one torsion.
+Repository for re-fitting Sage 2.2.0. This re-fit addresses issues with the geometry of epoxide groups and sulfamide groups, as well as introduces some new 5-membered ring internal angles, removes redundant parameters, and simplifies the SMIRKs pattern of one torsion. This is a partial valence re-fit, where we re-fit bonds, angles, and proper torsions.
+
+Contributions for this release include changes from @amcisaac and @pavankum, benchmarking results and infrastructure from @amcisaac, @ntBre, @mattwthompson, @j-wags, @megosato, @hannahbaumann, and @lilyminium, with valuable feedback from @lilyminium, @trevorgokey, @chapincavender, @davidlmobley,  @leeping, @ChristopherBayly, Bill Swope, and the team @openforcefield.
 
 ## Fitting pipeline
 The code that was used to produce the fit is all included here, and should be reproducible. The fit is performed in several steps, with instructions for how to run each step in the `README` file in each directory:
@@ -10,7 +12,7 @@ The code that was used to produce the fit is all included here, and should be re
 
 3. `03_generate-initial-ff`: Generate initial values for the bond and angle terms of the force field using the Modified Seminario Method.
 
-4. `04_fit-forcefield`: Fit the force field to the data using ForceBalance.
+4. `04_fit-forcefield`: Fit the force field bonds, angles, and proper torsions to the data using ForceBalance.
 
 5. `05_benchmark_forcefield`: Benchmark the force field.
 
