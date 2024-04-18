@@ -39,7 +39,7 @@ The problematic molecules excluded fall into two categories: 7-membered rings wi
 The distorted 7-membered rings are excluded as these are not realistic geometries, so we do not wish to benchmark how well our force fields reproduce these structures.
 The hypervalent S molecules are excluded as they are not assigned an appropriate parameter, and as a result optimize to very incorrect geometries and energies. 
 This is a known problem we are working to address, but in the mean time they do not provide a useful assessment of the performance of our force fields.
-![problem_molecules](https://github.com/openforcefield/sage-2.2.0/assets/29759281/d8a8051e-444c-4e1a-9c3a-774d32f87a1b)
+![problem_molecules](https://github.com/openforcefield/sage-2.2.0/assets/29759281/afd0c0d5-4e53-4be8-a00d-db919d0285ef)
 
 Benchmark plots can be found in `Sage_220_benchmark`.
 
