@@ -1,6 +1,6 @@
 This is the directory where the FF fit happens. The directory contains a few files and directories:
 
-`fb_196_ic_0318.tar.gz` is the compressed conda environment for the fit. Using a compressed environment reduces overhead on the cluster.
+`fb_196_ic_0318.tar.gz` is the compressed conda environment for the fit. Using a compressed environment reduces overhead on the cluster. It was too large to upload directly, but can be re-created by using the command `conda pack -n fb_196_ic_0318`.
 
 `nor4` is the directory where `openff_unconstrained-2.2.0-rc1.offxml` was fit. It is called `nor4` due to not having a specific 4-membered ring heteroatom internal angle. Within this directory are:
 
