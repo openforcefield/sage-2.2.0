@@ -3,6 +3,8 @@ Repository for re-fitting Sage 2.2.0. This re-fit addresses issues with the geom
 
 Contributions for this release include changes from @amcisaac and @pavankum, benchmarking results and infrastructure from @amcisaac, @ntBre, @mattwthompson, @j-wags, @megosato, @hannahbaumann, and @lilyminium, with valuable feedback from @lilyminium, @trevorgokey, @chapincavender, @davidlmobley,  @leeping, @ChristopherBayly, Bill Swope, and the team @openforcefield.
 
+The entirety of this dataset has been published on Zenodo, [*QC Fitting Datasets for OpenFF SMIRNOFF Sage 2.2.0*](https://doi.org/10.5281/zenodo.15635099).
+
 ## Fitting pipeline
 The code that was used to produce the fit is all included here, and should be reproducible. The fit is performed in several steps, with instructions for how to run each step in the `README` file in each directory:
 
